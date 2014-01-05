@@ -20,7 +20,7 @@
 	/*
 	 * Modules
 	 */
-	 
+	
 	$filename["accueil"]	= "Modules/accueil.php";
 	$filename["aide"]	= "Aide/aide.php";
 	$filename["apropos"]	= "Aide/apropos.php";
@@ -28,4 +28,23 @@
 	$filename["clients"]	= "Modules/clients.php";
 	$filename["mail"]	= "Modules/mail.php";
 	$filename["reductions"]	= "Modules/reductions.php";
+	
+	
+	/*
+	 * Scripts
+	 */
+	
+	
+	
+	/*
+	 * Stylesheets
+	 */
+	
+	
+	
+	/*
+	 * Images
+	 */
+	
+	
 ?>
