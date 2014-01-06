@@ -1,0 +1,13 @@
+/*
+ * default.css
+ * Fidelity
+ * 
+ * Created by Richard Degenne on 30/12/2013. CC by-nc-sa.
+ * 
+ * Feuille de style par défaut pour la frame principale. Des feuilles de style supplémentaires peuvent compléter celle-ci selon le module.
+ */
+
+body
+{
+	background-color:#eeeeee;
+}
