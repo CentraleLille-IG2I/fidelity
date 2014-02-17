@@ -34,6 +34,10 @@
 	 * Scripts
 	 */
 	
+	// Database-related scripts
+	
+	$filename["db_connect"]	= "Database/db_connect.php";
+	$filename["db_functions"]	= "Database/db_functions.php";
 	
 	
 	/*

@@ -21,6 +21,7 @@
 
 <?php
 	include_once("filenames.php"); // Inclusion des noms de fichier
+	include_once($filename["db_functions"]); // Inclusion du fichier de fonctions base de données
 	
 	echo "\n<!-- HEADER -->\n";
 	include_once($filename["header"]);
