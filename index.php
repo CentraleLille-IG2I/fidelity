@@ -15,10 +15,13 @@
 	<meta charset="utf-8">
 	<title>Fidelity</title>
 	<link rel="stylesheet" href="Stylesheets/default.css">
+	
+	<!-- Désactivation du cache (DEBUG_ONLY) -->
+	<META http-equiv="Cache-Control" content="no-cache"> 
+	<META http-equiv="Pragma" content="no-cache"> 
+	<META http-equiv="Expires" content="0">
 </head>
-
 <body>
-
 <?php
 	include_once("filenames.php"); // Inclusion des noms de fichier
 	include_once($filename["db_functions"]); // Inclusion du fichier de fonctions base de données

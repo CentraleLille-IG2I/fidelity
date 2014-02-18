@@ -10,3 +10,10 @@
 ?>
 
 <h1>Clients</h1>
+
+<pre>
+<?php
+	
+	print_r(array(getClientById(10)));
+?>
+</pre>
