@@ -206,12 +206,12 @@
 	// Clients
 	
 	/*---------------------------*
-	 * Fonction :	newClient
+	 * Fonction :	newClient // NON-FONCTIONNELLE
 	 * Paramètres :	toInsert - Tableau
 	 * Retour :		Booléen
 	 * Description :	Insère un nouveau client en Vérifie l'intégrité des champs avant insertion. Renvoie un booléen fonction de la réussite de l'insertion.
 	/*---------------------------*/
-	function newClient($toInsert)
+/*	function newClient($toInsert)
 	{
 		global $db;
 		if(isset($toInsert['numeroDeCarte']) && isset($toInsert['nom']) && isset($toInsert['prenom']) && isset($toInsert['adresse']) && isset($toInsert['ville']) && isset($toInsert['aboMail']) && isset($toInsert['aboSms'])) // Test de la présence des champs obligatoire
@@ -259,7 +259,7 @@
 
 		$request = $db->prepare("SELECT * from `Clients` WHERE `id` = ?");
 	}
-	
+*/	
 	// Réductions
 	
 	
