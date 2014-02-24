@@ -42,6 +42,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -80,6 +81,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -121,6 +123,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -162,6 +165,7 @@
 					"ville" => $data['ville'],
 					"codePostal" => $data['codePostal'],
 					"telephone" => $data['telephone'],
+					"telephone2" => $data['telephone2'],
 					"mail" => $data['mail'],
 					"aboMail" => $data['aboMail'],
 					"aboSms" => $data['aboSms'],
@@ -293,14 +297,14 @@
 			while($data = $request->fetch())
 			{
 				$toReturn[] = array(
-				"id" => $data['id'],
-				"description" => $data['description'],
-				"cout" => $data['cout'],
-				"type" => $data['type'],
-				"valeur" => $data['valeur'],
-				"debut" => $data['debut'],
-				"fin" => $data['fin']
-				);
+					"id" => $data['id'],
+					"description" => $data['description'],
+					"cout" => $data['cout'],
+					"type" => $data['type'],
+					"valeur" => $data['valeur'],
+					"debut" => $data['debut'],
+					"fin" => $data['fin']
+					);
 			}
 			$request->closeCursor();
 			return $toReturn;
