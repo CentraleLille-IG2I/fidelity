@@ -367,7 +367,8 @@
 	
 	/*---------------------------*
 	 * Fonction :	updateClient
-	 * Paramètres :	toUpdate - Tableau
+	 * Paramètres :	id — Entier
+	 				toUpdate - Tableau
 	 * Retour :		Booléen
 	 * Description :	Met un jour un client (id) en vérifiant l'intégrité de chaque valeur du tableau toUpdate.
 	/*---------------------------*/
@@ -387,10 +388,6 @@
 		$toRequest = $toRequest." WHERE id = :id";
 		$valuesArray["id"] = $id;
 		
-		echo "<pre>\n";
-		print_r($valuesArray);
-		echo $toRequest;
-		echo "</pre>";
 		$request = $db->prepare($toRequest);
 		$request->execute($valuesArray);
 		

@@ -8,11 +8,15 @@
 	 * Page répertoire pour l'affichage, la création, la modification de la liste de clients.
 	 */
 
+$fields = array(
+	"id","numeroCarte","nom","prenom","adresse","ville","codePostal","telephone","telephone2","mail","aboMail","aboSms","cagnotte","dateDeNaissance","interets"
+	);
+
 echo "<h1>Clients</h1>\n";
 	
 	if(isset($_POST["submit"]))
 	{
-		enregister();
+		enregistrer();
 	}
 	if(isset($_GET["mode"]))
 	{
@@ -157,6 +161,7 @@ function modifier()
 		$client = getClientById($_GET['id']) or die('Une erreur est survenue.');
 		echo "<form method='post' action='index.php?page=clients'>\n
 		<input type='hidden' name='submit' value='modifier' />\n
+		<input type='hidden' name='id' value='$client[id]' />\n
 		<table border='1'>\n
 			<tr><th>Numéro de carte</th><td><input type='text' name='numeroCarte' value='$client[numeroCarte]' /></td></tr>\n
 			<tr><th>Nom</th><td><input type='text' name='nom' value='$client[nom]' /></td></tr>\n
@@ -183,8 +188,8 @@ function modifier()
 			if($client['aboSms'])
 				echo "checked";
 			echo "/><label for='sms1'>Oui</label></td></tr>\n
-			<tr><th>Date de naissance</th><td><input type='date' name='dateDeNaissance' /></td></tr>\n
-			<tr><th>Intérêts</th><td><input type='text' name='interets' /></td></tr>\n
+			<tr><th>Date de naissance</th><td><input type='date' name='dateDeNaissance' value='$client[dateDeNaissance]'/></td></tr>\n
+			<tr><th>Intérêts</th><td><input type='text' name='interets' value='$client[interets]'/></td></tr>\n
 		</table>\n
 		<input type='submit' value='Valider' />\n
 		</form>\n";
@@ -211,6 +216,7 @@ function supprimer()
 		$client = getClientById($_GET['id']) or die('Une erreur est survenue.');
 		echo "<form method='post' action='index.php?page=clients'>\n
 		<input type='hidden' name='submit' value='supprimer' />\n
+		<input type='hidden' name='id' value='$client[id]' />\n
 		<p>Êtes-vous sûr de vouloir supprimer $client[prenom] $client[nom] ?</p>\n
 		<input type='submit' value='Valider' />\n
 		</form>\n";
@@ -221,8 +227,48 @@ function supprimer()
 	}
 }
 
-function engistrer()
+/*---------------------------*
+ * Fonction :	enregistrer
+ * Paramètres :	submit(POST)
+ * Retour :		Aucun
+ * Description :	Réalise les opérations de gestion de base données à l'appel du module.
+/*---------------------------*/
+function enregistrer()
 {
-	
+	global $fields;
+	switch($_POST['submit'])
+	{
+		case 'ajouter':
+			foreach($_POST as $key => $value)
+			{
+				if(in_array($key,$fields))
+				{
+					$toInsert[$key] = $value;
+				}
+			}
+			if(newClient($toInsert))
+				echo "<p class='notification'>Client ajouté !</p>";
+			else
+				echo "<p class='notification'>Échec de l'ajout</p>";
+			break;
+		
+		case 'modifier':
+			foreach($_POST as $key => $value)
+			{
+				if(in_array($key,$fields))
+				{
+					$toInsert[$key] = $value;
+				}
+			}
+			if(updateClient($_POST['id'],$toInsert))
+				echo "<p class='notification'>Client modifié !</p>";
+			else
+				echo "<p class='notification'>Échec de la modification.</p>";
+			break;
+		
+		case 'supprimer':
+			//...
+			break;
+	}
 }
 ?>
