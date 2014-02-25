@@ -8,7 +8,7 @@
 	 * Ce fichier regroupe l'ensemble des fonctions liées à la base de données.
 	 */
 	
-	include_once("db_connect.php");
+	include_once($filename['db_connect']);
 	
 	$db = db_connect();
 	
@@ -42,6 +42,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -80,6 +81,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -121,6 +123,7 @@
 				"ville" => $data['ville'],
 				"codePostal" => $data['codePostal'],
 				"telephone" => $data['telephone'],
+				"telephone2" => $data['telephone2'],
 				"mail" => $data['mail'],
 				"aboMail" => $data['aboMail'],
 				"aboSms" => $data['aboSms'],
@@ -162,6 +165,7 @@
 					"ville" => $data['ville'],
 					"codePostal" => $data['codePostal'],
 					"telephone" => $data['telephone'],
+					"telephone2" => $data['telephone2'],
 					"mail" => $data['mail'],
 					"aboMail" => $data['aboMail'],
 					"aboSms" => $data['aboSms'],
@@ -293,14 +297,14 @@
 			while($data = $request->fetch())
 			{
 				$toReturn[] = array(
-				"id" => $data['id'],
-				"description" => $data['description'],
-				"cout" => $data['cout'],
-				"type" => $data['type'],
-				"valeur" => $data['valeur'],
-				"debut" => $data['debut'],
-				"fin" => $data['fin']
-				);
+					"id" => $data['id'],
+					"description" => $data['description'],
+					"cout" => $data['cout'],
+					"type" => $data['type'],
+					"valeur" => $data['valeur'],
+					"debut" => $data['debut'],
+					"fin" => $data['fin']
+					);
 			}
 			$request->closeCursor();
 			return $toReturn;
@@ -363,7 +367,8 @@
 	
 	/*---------------------------*
 	 * Fonction :	updateClient
-	 * Paramètres :	toUpdate - Tableau
+	 * Paramètres :	id — Entier
+	 				toUpdate - Tableau
 	 * Retour :		Booléen
 	 * Description :	Met un jour un client (id) en vérifiant l'intégrité de chaque valeur du tableau toUpdate.
 	/*---------------------------*/
@@ -385,6 +390,31 @@
 		
 		$request = $db->prepare($toRequest);
 		$request->execute($valuesArray);
+		
+		if($request->rowCount())
+		{
+			$request->closeCursor();
+			return true;
+		}
+		else
+		{
+			$request->closeCursor();
+			return false;
+		}
+	}
+	
+	/*---------------------------*
+	 * Fonction :	deleteClient
+	 * Paramètres :	id — Entier
+	 * Retour :		Booléen
+	 * Description :	Supprime un client (id). 
+	/*---------------------------*/
+	function deleteClient($id)
+	{
+		global $db;
+		
+		$request = $db->prepare("DELETE FROM `Clients` WHERE `id`=? LIMIT 1");
+		$request->execute(array($id));
 		
 		if($request->rowCount())
 		{
