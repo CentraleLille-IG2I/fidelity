@@ -74,7 +74,7 @@ function liste()
 	echo "<a href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
 	$clients = getAllClients();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
-	echo "<table border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
+	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
 	foreach($clients as $client)
 	{
 		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$client[telephone]</td><td>$client[mail]</td><td>$client[aboMail]</td><td>$client[aboSms]</td></tr>\n";

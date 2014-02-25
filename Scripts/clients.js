@@ -1,16 +1,13 @@
 $(function() {
 	$('#recherche').keyup(function() {
-		console.log($('#recherche').val());
-		$('tr:gt(0)').each(function() {
-			if($(this).html().match($('#recherche').val()) != null)
+		$('#liste tr:gt(0)').each(function() { // Pour chaque ligne du tableau (hors ligne d'en-tête)
+			if($(this).html().match(new RegExp($('#recherche').val(),'i')) != null) // Si la valeur du champ de recherche est trouvée
 			{
-				console.log($(this).attr('id') + ": Ok!");
-				$(this).css('display','table row');
+				$(this).css('display','table row'); // Alors on affiche
 			}
 			else
 			{
-				console.log($(this).attr('id') + ": Pas ok!");
-				$(this).css('display','none');
+				$(this).css('display','none'); // Sinon on cache
 			}
 		});
 	});
