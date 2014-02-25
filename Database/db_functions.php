@@ -383,10 +383,6 @@
 		$toRequest = $toRequest." WHERE id = :id";
 		$valuesArray["id"] = $id;
 		
-		echo "<pre>\n";
-		print_r($valuesArray);
-		echo $toRequest;
-		echo "</pre>";
 		$request = $db->prepare($toRequest);
 		$request->execute($valuesArray);
 		
@@ -469,13 +465,34 @@
 		$toRequest = $toRequest." WHERE id = :id";
 		$valuesArray["id"] = $id;
 		
-		echo "<pre>\n";
-		print_r($valuesArray);
-		echo $toRequest;
-		echo "</pre>";
 		$request = $db->prepare($toRequest);
 		$request->execute($valuesArray);
 		
+		if($request->rowCount())
+		{
+			$request->closeCursor();
+			return true;
+		}
+		else
+		{
+			$request->closeCursor();
+			return false;
+		}
+	}
+	
+	/*---------------------------*
+	 * Fonction :	deleteReduction
+	 * Paramètres :	id — Entier
+	 * Retour :		Booléen
+	 * Description :	Supprime une réduction (id). 
+	/*---------------------------*/
+	function deleteClient($id)
+	{
+		global $db;
+
+		$request = $db->prepare("DELETE FROM `Reductions` WHERE `id`=? LIMIT 1");
+		$request->execute(array($id));
+
 		if($request->rowCount())
 		{
 			$request->closeCursor();

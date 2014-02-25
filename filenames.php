@@ -38,6 +38,10 @@
 	
 	$filename["db_functions"]	= "Database/db_functions.php";
 	
+	// JavaScript
+	
+	$filename["JSreductions"]	= "Scripts/reductions.js";
+	$filename["jquery"]	= "Scripts/jquery.js";
 	
 	/*
 	 * Stylesheets
