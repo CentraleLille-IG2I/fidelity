@@ -204,7 +204,7 @@ function supprimer()
 		$reduction = getReductionById($_GET['id']) or die('Une erreur est survenue.');
 		echo "<form method='post' action='index.php?page=reductions'>\n
 		<input type='hidden' name='submit' value='supprimer' />\n
-		<input type='hidden' name='id' value='$client[id]' />\n
+		<input type='hidden' name='id' value='$reduction[id]' />\n
 		<p>Êtes-vous sûr de vouloir supprimer la réduction \"$reduction[description]\" ?</p>\n
 		<input type='submit' value='Valider' />\n
 		</form>\n";

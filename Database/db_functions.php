@@ -516,7 +516,7 @@
 	 * Retour :		Booléen
 	 * Description :	Supprime une réduction (id). 
 	/*---------------------------*/
-	function deleteClient($id)
+	function deleteReduction($id)
 	{
 		global $db;
 
