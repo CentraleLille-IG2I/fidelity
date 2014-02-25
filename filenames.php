@@ -37,7 +37,12 @@
 	// Database-related scripts
 	
 	$filename["db_functions"]	= "Database/db_functions.php";
+	$filename["db_connect"]	= "Database/db_connect.php";
 	
+	// JavaScripts
+	
+	$filename["JSclients"] = "Scripts/clients.js";
+	$filename["jquery"] = "Scripts/jquery.js";
 	
 	/*
 	 * Stylesheets

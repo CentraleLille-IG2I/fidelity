@@ -14,7 +14,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>Fidelity</title>
+	<!-- Feuilles de styles standard -->
 	<link rel="stylesheet" href="Stylesheets/default.css">
+	
+	<!-- Scripts standard -->
+	
 	
 	<!-- Désactivation du cache (DEBUG_ONLY) -->
 	<META http-equiv="Cache-Control" content="no-cache"> 

@@ -8,7 +8,7 @@
 	 * Ce fichier regroupe l'ensemble des fonctions liées à la base de données.
 	 */
 	
-	include_once("db_connect.php");
+	include_once($filename['db_connect']);
 	
 	$db = db_connect();
 	
@@ -390,6 +390,31 @@
 		
 		$request = $db->prepare($toRequest);
 		$request->execute($valuesArray);
+		
+		if($request->rowCount())
+		{
+			$request->closeCursor();
+			return true;
+		}
+		else
+		{
+			$request->closeCursor();
+			return false;
+		}
+	}
+	
+	/*---------------------------*
+	 * Fonction :	deleteClient
+	 * Paramètres :	id — Entier
+	 * Retour :		Booléen
+	 * Description :	Supprime un client (id). 
+	/*---------------------------*/
+	function deleteClient($id)
+	{
+		global $db;
+		
+		$request = $db->prepare("DELETE FROM `Clients` WHERE `id`=? LIMIT 1");
+		$request->execute(array($id));
 		
 		if($request->rowCount())
 		{

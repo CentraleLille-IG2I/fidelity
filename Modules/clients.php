@@ -14,10 +14,13 @@ $fields = array(
 
 echo "<h1>Clients</h1>\n";
 	
+	// Si le flag "submit" est levé, alors il y a un accès bdd à faire. On se rend dans la fonction enregistrer.
 	if(isset($_POST["submit"]))
 	{
 		enregistrer();
 	}
+	
+	// Le switch permet d'accéder simplement aux différentes fonctionnalités.
 	if(isset($_GET["mode"]))
 	{
 		switch($_GET["mode"])
@@ -52,6 +55,13 @@ echo "<h1>Clients</h1>\n";
 		liste();
 	}
 	
+	// Chargement du JavaScript
+	echo "<script type='text/javascript' src='Scripts/jquery.js'></script>\n<script type='text/javascript' src='$filename[JSclients]'></script>\n";
+	
+/*
+ * Fonctions
+ */
+ 
 /*---------------------------*
  * Fonction :	liste
  * Paramètres :	Aucun
@@ -63,7 +73,7 @@ function liste()
 	echo "<h2>Liste des clients</h2>\n";
 	echo "<a href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
 	$clients = getAllClients();
-	echo "<input type=\"text\" placeholder=\"Rechercher\" onkeydown=\"rechercher();\" />";
+	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
 	echo "<table border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
 	foreach($clients as $client)
 	{
@@ -238,6 +248,9 @@ function enregistrer()
 	global $fields;
 	switch($_POST['submit'])
 	{
+		/*
+		 * Ajouter
+		 */
 		case 'ajouter':
 			foreach($_POST as $key => $value)
 			{
@@ -252,6 +265,9 @@ function enregistrer()
 				echo "<p class='notification'>Échec de l'ajout</p>";
 			break;
 		
+		/*
+		 * Modifier
+		 */
 		case 'modifier':
 			foreach($_POST as $key => $value)
 			{
@@ -266,8 +282,14 @@ function enregistrer()
 				echo "<p class='notification'>Échec de la modification.</p>";
 			break;
 		
+		/*
+		 * Supprimer
+		 */
 		case 'supprimer':
-			//...
+			if(deleteClient($_POST['id']))
+				echo "<p class='notification'>Client supprimé !</p>";
+			else
+				echo "<p class='notification'>Échec de la suppression.</p>";
 			break;
 	}
 }
