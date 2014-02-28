@@ -38,6 +38,7 @@ CREATE TABLE `Clients` (
   `ville` varchar(50) NOT NULL COMMENT 'Ville du client',
   `codePostal` int(11) DEFAULT NULL COMMENT 'Code postal du client',
   `telephone` varchar(20) DEFAULT NULL COMMENT 'Numéro de téléphone',
+  `telephone2` varchar(20) DEFAULT NULL COMMENT 'Autre numéro de téléphone',
   `mail` varchar(100) DEFAULT NULL COMMENT 'Adresse mail du client',
   `aboMail` tinyint(4) NOT NULL COMMENT 'Booléen d''abonnement mail',
   `aboSms` tinyint(4) NOT NULL COMMENT 'Booléen d''abonnement SMS',
