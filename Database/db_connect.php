@@ -20,7 +20,8 @@
 		
 		try
 		{
-			$db = new PDO('mysql:host=localhost;dbname=fidelity', 'root', 'root');
+			//$db = new PDO('mysql:host=localhost;dbname=fidelity', 'root', 'root');
+			$db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 		}
 		catch (Exception $e)
 		{
