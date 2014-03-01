@@ -70,14 +70,22 @@ echo "<h1>Clients</h1>\n";
 /*---------------------------*/
 function liste()
 {
+	$aboMail="non";
+	$aboSms="non";
 	echo "<h2>Liste des clients</h2>\n";
 	echo "<a href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
 	$clients = getAllClients();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
-	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
+	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Téléphone 2</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
 	foreach($clients as $client)
 	{
-		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$client[telephone]</td><td>$client[mail]</td><td>$client[aboMail]</td><td>$client[aboSms]</td></tr>\n";
+		if($client['aboMail']==1) $aboMail="oui";     //plus claire pour le client
+		else $aboMail="non";
+		if($client['aboSms']==1) $aboSms="oui";
+		else $aboSms="non";
+		if($client['telephone2']==Null) $telephone2="Non renseigné";
+		else $telephone2=$client['telephone2'];
+		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$client[telephone]</td><td>$client[telephone2]</td><td>$client[mail]</td><td>$aboMail</td><td>$aboSms</td></tr>\n";
 	}
 	echo "</table>";
 }
@@ -95,6 +103,10 @@ function fiche()
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
 		$client = getClientById($_GET['id']) or die('Une erreur est survenue.');
+		if($client['aboMail']==1) $aboMail="oui";     //plus claire pour le client
+		else $aboMail="non";
+		if($client['aboSms']==1) $aboSms="oui";
+		else $aboSms="non";
 	echo "<a href=\"index.php?page=clients&mode=modifier&id=$client[id]\">Modifier le client</a>\n";
 	echo "<a href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
 		echo "<table border=\"1\">\n
@@ -105,10 +117,10 @@ function fiche()
 			<tr><th>Cagnotte</th><td>$client[cagnotte]</td></tr>\n
 			<tr><th>Adresse</th><td>$client[adresse], $client[codePostal] $client[ville]</td></tr>\n
 			<tr><th>Téléphone</th><td>$client[telephone]</td></tr>\n
-			<tr><th>Téléphone</th><td>$client[telephone2]</td></tr>\n
+			<tr><th>Téléphone 2</th><td>$client[telephone2]</td></tr>\n
 			<tr><th>Mail</th><td>$client[mail]</td></tr>\n
-			<tr><th>Abonné mail</th><td>$client[aboMail]</td></tr>\n
-			<tr><th>Abonné SMS</th><td>$client[aboSms]</td></tr>\n
+			<tr><th>Abonné mail</th><td>$aboMail</td></tr>\n
+			<tr><th>Abonné SMS</th><td>$aboSms</td></tr>\n
 			<tr><th>Centres d'intérêt</th><td>$client[interets]</td></tr>\n
 			";
 		echo "</table>";
