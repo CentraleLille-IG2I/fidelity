@@ -33,23 +33,7 @@
 		$toReturn = array();
 		while($data = $request->fetch())
 		{
-			$toReturn[] = array( // Le tableau est ajouté à l'ancien $toReturn
-				"id" => $data['id'],
-				"nom" => $data['nom'],
-				"prenom" => $data['prenom'],
-				"numeroCarte" => $data['numeroCarte'],
-				"adresse" => $data['adresse'],
-				"ville" => $data['ville'],
-				"codePostal" => $data['codePostal'],
-				"telephone" => $data['telephone'],
-				"telephone2" => $data['telephone2'],
-				"mail" => $data['mail'],
-				"aboMail" => $data['aboMail'],
-				"aboSms" => $data['aboSms'],
-				"cagnotte" => $data['cagnotte'],
-				"dateDeNaissance" => $data['dateDeNaissance'],
-				"interets" => $data['interets']
-				);
+			$toReturn[] = $data;
 		}
 		$request->closeCursor();
 		return $toReturn;
@@ -72,23 +56,7 @@
 		if($data = $request->fetch())
 		{
 			$request->closeCursor();
-			return array(
-				"id" => $data['id'],
-				"nom" => $data['nom'],
-				"prenom" => $data['prenom'],
-				"numeroCarte" => $data['numeroCarte'],
-				"adresse" => $data['adresse'],
-				"ville" => $data['ville'],
-				"codePostal" => $data['codePostal'],
-				"telephone" => $data['telephone'],
-				"telephone2" => $data['telephone2'],
-				"mail" => $data['mail'],
-				"aboMail" => $data['aboMail'],
-				"aboSms" => $data['aboSms'],
-				"cagnotte" => $data['cagnotte'],
-				"dateDeNaissance" => $data['dateDeNaissance'],
-				"interets" => $data['interets']
-				);
+			return $data;
 		}
 		else
 		{
@@ -114,23 +82,7 @@
 		if($data = $request->fetch())
 		{
 			$request->closeCursor();
-			return array(
-				"id" => $data['id'],
-				"nom" => $data['nom'],
-				"prenom" => $data['prenom'],
-				"numeroCarte" => $data['numeroCarte'],
-				"adresse" => $data['adresse'],
-				"ville" => $data['ville'],
-				"codePostal" => $data['codePostal'],
-				"telephone" => $data['telephone'],
-				"telephone2" => $data['telephone2'],
-				"mail" => $data['mail'],
-				"aboMail" => $data['aboMail'],
-				"aboSms" => $data['aboSms'],
-				"cagnotte" => $data['cagnotte'],
-				"dateDeNaissance" => $data['dateDeNaissance'],
-				"interets" => $data['interets']
-				);
+			return $data;
 		}
 		else
 		{
@@ -156,23 +108,7 @@
 			$toReturn = array();
 			while($data = $request->fetch())
 			{
-				$toReturn[] = array( // Le tableau est ajouté à l'ancien $toReturn
-					"id" => $data['id'],
-					"nom" => $data['nom'],
-					"prenom" => $data['prenom'],
-					"numeroCarte" => $data['numeroCarte'],
-					"adresse" => $data['adresse'],
-					"ville" => $data['ville'],
-					"codePostal" => $data['codePostal'],
-					"telephone" => $data['telephone'],
-					"telephone2" => $data['telephone2'],
-					"mail" => $data['mail'],
-					"aboMail" => $data['aboMail'],
-					"aboSms" => $data['aboSms'],
-					"cagnotte" => $data['cagnotte'],
-					"dateDeNaissance" => $data['dateDeNaissance'],
-					"interets" => $data['interets']
-					);
+				$toReturn[] = $data;
 			}
 			$request->closeCursor();
 			return $toReturn;
@@ -199,15 +135,7 @@
 		$request->execute();
 		while($data = $request->fetch())
 		{
-			$toReturn[] = array( // Le tableau est ajouté à l'ancien $toReturn
-				"id" => $data['id'],
-				"description" => $data['description'],
-				"cout" => $data['cout'],
-				"type" => $data['type'],
-				"valeur" => $data['valeur'],
-				"debut" => $data['debut'],
-				"fin" => $data['fin']
-				);
+			$toReturn[] = $data;
 		}
 		$request->closeCursor();
 		return $toReturn;
@@ -230,15 +158,7 @@
 		if($data = $request->fetch())
 		{
 			$request->closeCursor();
-			return array(
-				"id" => $data['id'],
-				"description" => $data['description'],
-				"cout" => $data['cout'],
-				"type" => $data['type'],
-				"valeur" => $data['valeur'],
-				"debut" => $data['debut'],
-				"fin" => $data['fin']
-				);
+			return $data;
 		}
 		else
 		{
@@ -265,15 +185,7 @@
 		$toReturn = array();
 		while($data = $request->fetch())
 		{
-			$toReturn[] = array( // Le tableau est ajouté à l'ancien $toReturn
-				"id" => $data['id'],
-				"description" => $data['description'],
-				"cout" => $data['cout'],
-				"type" => $data['type'],
-				"valeur" => $data['valeur'],
-				"debut" => $data['debut'],
-				"fin" => $data['fin']
-				);
+			$toReturn[] = $data;
 		}
 		$request->closeCursor();
 		return $toReturn;
@@ -296,15 +208,7 @@
 			$toReturn = array();
 			while($data = $request->fetch())
 			{
-				$toReturn[] = array(
-					"id" => $data['id'],
-					"description" => $data['description'],
-					"cout" => $data['cout'],
-					"type" => $data['type'],
-					"valeur" => $data['valeur'],
-					"debut" => $data['debut'],
-					"fin" => $data['fin']
-					);
+				$toReturn[] = $data;
 			}
 			$request->closeCursor();
 			return $toReturn;
@@ -331,9 +235,9 @@
 	function newClient($toInsert)
 	{
 		global $db;
-		if(isset($toInsert['numeroCarte']) && isset($toInsert['nom']) && isset($toInsert['prenom']) && isset($toInsert['adresse']) && isset($toInsert['ville']) && isset($toInsert['aboMail']) && isset($toInsert['aboSms'])) // Test de la présence des champs obligatoire
+		if(isset($toInsert['numeroCarte']) && isset($toInsert['civilite']) && isset($toInsert['nom']) && isset($toInsert['prenom']) && isset($toInsert['adresse']) && isset($toInsert['ville']) && isset($toInsert['aboMail']) && isset($toInsert['aboSms'])) // Test de la présence des champs obligatoire
 		{
-			if(!empty($toInsert['numeroCarte']) && !empty($toInsert['nom']) && !empty($toInsert['prenom']) && !empty($toInsert['adresse']) && !empty($toInsert['ville']) && ($toInsert['aboMail'] == 0 || $toInsert['aboMail'] == 1) && ($toInsert['aboSms'] == 0 || $toInsert['aboSms'] == 1)) // Si tous les champs obligatoires ne sont pas vides (condition différente pour les booléens : empty renvoie true si $entier = 0)
+			if(!empty($toInsert['numeroCarte']) && !empty($toInsert['civilite']) && !empty($toInsert['nom']) && !empty($toInsert['prenom']) && !empty($toInsert['adresse']) && !empty($toInsert['ville']) && ($toInsert['aboMail'] == 0 || $toInsert['aboMail'] == 1) && ($toInsert['aboSms'] == 0 || $toInsert['aboSms'] == 1)) // Si tous les champs obligatoires ne sont pas vides (condition différente pour les booléens : empty renvoie true si $entier = 0)
 			{
 				$fields = "INSERT INTO `Clients`(`cagnotte`"; // On crée le début de la requête
 				$values = "VALUES(0.0";

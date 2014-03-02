@@ -9,7 +9,7 @@
 	 */
 
 $fields = array(
-	"id","numeroCarte","nom","prenom","adresse","ville","codePostal","telephone","telephone2","mail","aboMail","aboSms","cagnotte","dateDeNaissance","interets"
+	"id","numeroCarte","civilite","nom","prenom","adresse","ville","codePostal","telephone","telephone2","mail","aboMail","aboSms","cagnotte","dateDeNaissance","interets"
 	);
 
 echo "<h1>Clients</h1>\n";
@@ -74,10 +74,10 @@ function liste()
 	echo "<a href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
 	$clients = getAllClients();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
-	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
+	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Civilité</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
 	foreach($clients as $client)
 	{
-		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$client[telephone]</td><td>$client[mail]</td><td>$client[aboMail]</td><td>$client[aboSms]</td></tr>\n";
+		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[civilite]</td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$client[telephone]</td><td>$client[mail]</td><td>$client[aboMail]</td><td>$client[aboSms]</td></tr>\n";
 	}
 	echo "</table>";
 }
@@ -99,6 +99,7 @@ function fiche()
 	echo "<a href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
 		echo "<table border=\"1\">\n
 			<tr><th>Numéro de carte</th><td>$client[numeroCarte]</td></tr>\n
+			<tr><th>Civilité</th><td>$client[civilite]</td></tr>\n
 			<tr><th>Nom</th><td>$client[nom]</td></tr>\n
 			<tr><th>Prénom</th><td>$client[prenom]</td></tr>\n
 			<tr><th>Date de naissance</th><td>$client[dateDeNaissance]</td></tr>\n
@@ -134,6 +135,9 @@ function ajouter()
 	<input type="hidden" name="submit" value="ajouter" />
 	<table border="1">
 		<tr><th>Numéro de carte</th><td><input type="text" name="numeroCarte" /></td></tr>
+		<tr><th>Civilité</th><td><input type="radio" id="mr" name="civilite" value="Mr" /><label for="mr">Mr.</label><br />
+		<input type="radio" name="civilite" id="mme" value="Mme" /><label for="mme">Mme.</label><br />
+		<input type="radio" name="civilite" id="mlle" value="Mlle" /><label for="mlle">Mlle.</label></td></tr>
 		<tr><th>Nom</th><td><input type="text" name="nom" /></td></tr>
 		<tr><th>Prénom</th><td><input type="text" name="prenom" /></td></tr>
 		<tr><th>Adresse</th><td><input type="text" name="adresse" /></td></tr>
@@ -174,6 +178,18 @@ function modifier()
 		<input type='hidden' name='id' value='$client[id]' />\n
 		<table border='1'>\n
 			<tr><th>Numéro de carte</th><td><input type='text' name='numeroCarte' value='$client[numeroCarte]' /></td></tr>\n
+			<tr><th>Civilité</th><td><input type='radio' name='civilite' id='mr' value='Mr' ";
+		if($client['civilite'] == "Mr")
+			echo "checked";
+		echo "/><label for='mr'>Mr.</label><br />\n
+			<input type='radio' name='civilite' id='mme' value='Mme' ";
+		if($client['civilite'] == "Mme")
+			echo "checked";
+		echo "/><label for='mme'>Mme.</label><br />\n
+			<input type='radio' name='civilite' id='mlle' value='Mlle' ";
+		if($client['civilite'] == "Mlle")
+			echo "checked";
+		echo "/><label for='mlle'>Mlle.</label></td></th>\n
 			<tr><th>Nom</th><td><input type='text' name='nom' value='$client[nom]' /></td></tr>\n
 			<tr><th>Prénom</th><td><input type='text' name='prenom' value='$client[prenom]' /></td></tr>\n
 			<tr><th>Adresse</th><td><input type='text' name='adresse' value='$client[adresse]' /></td></tr>\n
@@ -227,7 +243,7 @@ function supprimer()
 		echo "<form method='post' action='index.php?page=clients'>\n
 		<input type='hidden' name='submit' value='supprimer' />\n
 		<input type='hidden' name='id' value='$client[id]' />\n
-		<p>Êtes-vous sûr de vouloir supprimer $client[prenom] $client[nom] ?</p>\n
+		<p>Êtes-vous sûr de vouloir supprimer $client[civilite]. $client[prenom] $client[nom] ?</p>\n
 		<input type='submit' value='Valider' />\n
 		</form>\n";
 	}
