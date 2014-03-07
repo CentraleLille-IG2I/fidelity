@@ -79,22 +79,30 @@ function liste()
 	echo "<table id=\"liste\" border=\"1\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Téléphone 2</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";
 	foreach($clients as $client)
 	{
-		if($client['aboMail'])
-			$aboMail="Oui";     //plus claire pour le client
+		if($client['aboMail']) // Gestion de l'affichage
+			$aboMail="Oui";
 		else
 			$aboMail="Non";
+			
 		if($client['aboSms'])
 			$aboSms="Oui";
-		else $aboSms="Non";
+		else
+			$aboSms="Non";
+		
 		if($client['telephone'] == null)
 			$telephone="—";
-		else $telephone2=$client['telephone'];
+		else
+			$telephone = $client['telephone'];
+		
 		if($client['telephone2'] == null)
 			$telephone2="—";
-		else $telephone2=$client['telephone2'];
+		else
+			$telephone2=$client['telephone2'];
+			
 		if($client['mail'] == null)
 			$mail="—";
-		else $telephone2=$client['mail'];
+		else
+			$mail=$client['mail'];
 		
 		echo "<tr id=\"$client[id]\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$telephone</td><td>$telephone2</td><td>$mail</td><td>$aboMail</td><td>$aboSms</td></tr>\n";
 	}
