@@ -10,6 +10,6 @@
 ?>
 
 <div id="header">
-	<p>Ici se trouve le header. <a href="?page=accueil">Retour à l'accueil</a></p>
+	<p>Fidelity <a class="but" id="Butreturnacc" href="?page=accueil">Retour à l'accueil</a></p>
 	<hr />
 </div>

@@ -74,7 +74,7 @@ function liste()
 	
 	$reductions = getAllReductions();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
-	echo "<table id=\"liste\" border=\"1\">\n<tr><th>Description</th><th>Coût</th><th>Valeur</th><th>Date de début</th><th>Date de fin</th></tr>\n";
+	echo "<table id=\"liste\">\n<tr><th>Description</th><th>Coût</th><th>Valeur</th><th>Date de début</th><th>Date de fin</th></tr>\n";
 	foreach($reductions as $reduction)
 	{
 		echo "<tr id=\"$reduction[id]\"><td><a href=\"index.php?page=reductions&mode=fiche&id=$reduction[id]\">$reduction[description]</a></td><td>$reduction[cout]</td><td>$reduction[valeur] ";
