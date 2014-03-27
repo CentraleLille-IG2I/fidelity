@@ -452,7 +452,7 @@
 					{
 						$fields = $fields.",`".$key."`";
 						$values = $values.",:".$key;
-						$valuesArray[$key] = $value;
+						$valuesArray[$key] = mysql_real_escape_string($value);
 					}
 				}
 				$request = $db->prepare($fields.") ".$values.")");
@@ -489,7 +489,7 @@
 			if(isset($toUpdate[$key]) && !empty($toUpdate[$key]) || $toUpdate[$key] == 0)
 			{
 				$toRequest = $toRequest.", ".$key." = :$key";
-				$valuesArray[$key] = $value;
+				$valuesArray[$key] = mysql_real_escape_string($value);
 			}
 		}
 		$toRequest = $toRequest." WHERE id = :id";
