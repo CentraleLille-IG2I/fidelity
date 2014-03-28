@@ -43,6 +43,7 @@
 	
 	$filename["JSreductions"]	= "Scripts/reductions.js";
 	$filename["JSclients"] = "Scripts/clients.js";
+	$filename["JScaisse"] = "Scripts/caisse.js";
 	$filename["jquery"] = "Scripts/jquery.js";
 	
 	/*
