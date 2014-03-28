@@ -17,7 +17,7 @@
 	*/ 
 	// donc, un tableau qui contient les noms utiliser pour les sorties de ces fonctions et qui seront utilisable ds les mail
 	// sa offre plus de dinamisme et facilite les modifications
-	$outNames = array("id", "nom", "prenom", "numeroCarte",	"adresse", "ville", "codePostal", "telephone", "telephone2", "mail", "aboMail", "aboSms", "cagnotte", "dateDeNaissance", "interets");
+	$outNames = array("civilite", "nom", "prenom", "numeroCarte",	"adresse", "ville", "codePostal", "telephone", "telephone2", "mail", "aboMail", "aboSms", "cagnotte", "dateDeNaissance", "interets");
 	
 	
 	/*
