@@ -165,26 +165,26 @@ function ajouter()
 	<form method="post" action="index.php?page=clients">
 	<input type="hidden" name="submit" value="ajouter" />
 	<table border="1">
-		<tr><th>Numéro de carte</th><td><input type="text" name="numeroCarte" /></td></tr>
-		<tr><th>Civilité</th><td><input type="radio" id="mr" name="civilite" value="Mr" /><label for="mr">Mr.</label><br />
+		<tr><th>Numéro de carte *</th><td><input type="text" name="numeroCarte" /></td></tr>
+		<tr><th>Civilité *</th><td><input type="radio" id="mr" name="civilite" value="Mr" /><label for="mr">Mr.</label><br />
 		<input type="radio" name="civilite" id="mme" value="Mme" /><label for="mme">Mme.</label><br />
 		<input type="radio" name="civilite" id="mlle" value="Mlle" /><label for="mlle">Mlle.</label></td></tr>
-		<tr><th>Nom</th><td><input type="text" name="nom" /></td></tr>
-		<tr><th>Prénom</th><td><input type="text" name="prenom" /></td></tr>
-		<tr><th>Adresse</th><td><input type="text" name="adresse" /></td></tr>
-		<tr><th>Ville</th><td><input type="text" name="ville" /></td></tr>
+		<tr><th>Nom *</th><td><input type="text" name="nom" /></td></tr>
+		<tr><th>Prénom *</th><td><input type="text" name="prenom" /></td></tr>
+		<tr><th>Adresse *</th><td><input type="text" name="adresse" /></td></tr>
+		<tr><th>Ville *</th><td><input type="text" name="ville" /></td></tr>
 		<tr><th>Code postal</th><td><input type="text" name="codePostal" /></td></tr>
 		<tr><th>Téléphone</th><td><input type="text" name="telephone" /></td></tr>
 		<tr><th>Téléphone 2</th><td><input type="text" name="telephone2" /></td></tr>
 		<tr><th>Mail</th><td><input type="text" name="mail" /></td></tr>
-		<tr><th>Abonnement mail</th><td><input type="radio" id="mail0" name="aboMail" value="0" /><label for="mail0">Non</label><br />
+		<tr><th>Abonnement mail *</th><td><input type="radio" id="mail0" name="aboMail" value="0" checked/><label for="mail0">Non</label><br />
 		<input type="radio" name="aboMail" id="mail1" value="1" /><label for="mail1">Oui</label></td></tr>
-		<tr><th>Abonnement SMS</th><td><input type="radio" id="sms0" name="aboSms" value="0" /><label for="sms0">Non</label><br />
+		<tr><th>Abonnement SMS *</th><td><input type="radio" id="sms0" name="aboSms" value="0" checked/><label for="sms0">Non</label><br />
 		<input type="radio" name="aboSms" id="sms1" "value="1" /><label for="sms1">Oui</label></td></tr>
 		<tr><th>Date de naissance</th><td><input type="date" name="dateDeNaissance" /></td></tr>
 		<tr><th>Intérêts</th><td><input type="text" name="interets" /></td></tr>
 	</table>
-	
+	<p>Les champs marqués d'un astérisque (*) sont obligatoires.</p>
 	<input type="submit" value="Valider" />
 	</form>
 <?php
