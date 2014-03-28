@@ -6,26 +6,22 @@
  * 
  * Feuille de style par défaut pour la frame principale. Des feuilles de style supplémentaires peuvent compléter celle-ci selon le module.
  */
-
 body
 {
 	background-color:#444444;
 	color:white;
 	font-family:Verdana;
 }
-
 a
 {
 	text-decoration: none;
 	color:white;
 	padding:10px;
 }
-
 a:hover
 {
 	/*text-decoration: underline;*/
 }
-
 table
 {
 	padding-top:50px;
@@ -51,14 +47,12 @@ h2
 {
 	text-align:center;
 }
-
 ul
 {
 	list-style-type:none;
 	position:relative;
 	left:44%;
 }
-
 li
 {
 	margin:3px;
@@ -69,9 +63,7 @@ li
 	text-align:center;
 	/*float:left;
 	margin-left:10px;*/
-
 }
-
 li:hover
 {
 	margin:3px;
@@ -81,29 +73,24 @@ li:hover
 	background-color:#333333;
 	/*margin-left:10px;*/
 }
-
 ul li:first-child
 {
 	/*padding-top:20px;*/
 }
-
 table tbody tr td a
 {
 	text-decoration: underline;
 }
-
 table tbody tr td a:hover
 {
 	color:#555555
 }
-
 #recherche
 {
 	text-align:left;
 	position:relative;
 	left:68%;
 	width:200px;
-	font-size:0.8em;
 }
 .but
 {
@@ -118,29 +105,26 @@ table tbody tr td a:hover
 	background-color: #333333;
 	border-radius:20px;
 }
-
 .Valid
 {
 	position:relative;
 	left:3%;
 }
-
 #Butreturnacc
 {
 	position:relative;
 	left:75%
 }
-
 #footer
 {
 	margin-top:50px;
+	clear:both;
+	bottom:0px;
 }
-
 #header
 {
 	margin-bottom:50px;
 }
-
 .notification
 {
 	padding:10px;
@@ -148,13 +132,81 @@ table tbody tr td a:hover
 	width:250px;
 	text-align:center;
 }
-
 .negatif
 {
 	background-color: #E30909;
 }
-
 .positif
 {
 	background-color: #1BC229;
+}
+.element
+{
+	position:float;
+}
+textarea
+{ 
+	resize:none;
+	width:550px;
+}
+.MailerOuput
+{
+	width:800px;
+	display:block;
+}
+.MenuMailer
+{
+	margin-top:20px;
+	float:left;
+}
+#objet
+{
+	width:488px;
+}
+#titremail
+{
+	left:20%;
+	position:relative;
+}
+#butsms
+{
+	width:180px;
+	height:50px;
+	margin-left:35px;
+	margin-top:20px;
+}
+#butenvoimail
+{
+	position:relative;
+	left:36%;
+	margin-top:20px;
+	margin-bottom:30px;
+	width:180px;
+	height:50px;
+}
+#Smsmenu
+{
+	float:left;
+	margin-left:400px;
+	margin-top:40px;
+}
+.boption
+{
+	width:150px;
+}
+.Liste
+{
+	margin-top:38px;
+}
+h3
+{
+	display:inline;
+}
+.categorie
+{
+	display:inline-block;
+}
+#exemple
+{
+	margin-left:150px;
 }
