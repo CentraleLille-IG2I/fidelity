@@ -73,7 +73,7 @@ function liste()
 	$aboMail="non";
 	$aboSms="non";
 	echo "<h2>Liste des clients</h2>\n";
-	echo "<div id='topPanel' ><a href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
+	echo "<div id='topPanel' ><a class=\"but\" href=\"index.php?page=clients&mode=ajouter\">Ajouter un client</a>\n";
 	$clients = getAllClients();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" /></div>";
 	echo "<table id=\"liste\">\n<tr><th>N° de carte</th><th>Nom</th><th>Prénom</th><th>Cagnotte</th><th>Ville</th><th>Code Postal</th><th>Téléphone</th><th>Téléphone 2</th><th>Mail</th><th>Abonné mail</th><th>Abonné SMS</th></tr>\n";

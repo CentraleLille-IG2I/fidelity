@@ -70,7 +70,7 @@ echo "<h1>Réductions</h1>\n";
 function liste()
 {
 	echo "<h2>Liste des réductions</h2>\n";
-	echo "<a href=\"index.php?page=reductions&mode=ajouter\">Ajouter une réduction</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=reductions&mode=ajouter\">Ajouter une réduction</a>\n";
 	
 	$reductions = getAllReductions();
 	echo "<input type=\"text\" id=\"recherche\" placeholder=\"Rechercher\" />";
@@ -96,7 +96,7 @@ function liste()
 function fiche()
 {
 	echo "<h2>Fiche réduction</h2>";
-	echo "<a href=\"index.php?page=reductions&mode=liste\">Retour à la liste</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=reductions&mode=liste\">Retour à la liste</a>\n";
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
 		$reduction = getReductionById($_GET['id']) or die('Une erreur est survenue.');
