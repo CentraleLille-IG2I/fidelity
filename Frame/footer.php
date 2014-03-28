@@ -11,5 +11,5 @@
 
 <div id="footer">
 	<hr />
-	<p>Ici se trouve le footer.</p>
+	<p>Basly-Primeur</p>
 </div>
