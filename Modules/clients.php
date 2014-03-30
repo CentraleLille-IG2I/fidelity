@@ -118,7 +118,7 @@ function liste()
 function fiche()
 {
 	echo "<h2>Fiche client</h2>\n";
-	echo "<a href=\"index.php?page=clients&mode=liste\">Retour à la liste</a>\n";
+	echo "<a class='but' href=\"index.php?page=clients&mode=liste\">Retour à la liste</a>\n";
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
 		$client = getClientById($_GET['id']) or die('Une erreur est survenue.');
@@ -126,9 +126,9 @@ function fiche()
 		else $aboMail="non";
 		if($client['aboSms']==1) $aboSms="oui";
 		else $aboSms="non";
-	echo "<a class=\"but\"href=\"index.php?page=clients&mode=modifier&id=$client[id]\">Modifier le client</a>\n";
-	echo "<a class=\"but\" href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
-		echo "<table border=\"1\">\n
+	echo "<a class='but' href=\"index.php?page=clients&mode=modifier&id=$client[id]\">Modifier le client</a>\n";
+	echo "<a  class='but' href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
+		echo "<table >\n
 			<tr><th>Numéro de carte</th><td>$client[numeroCarte]</td></tr>\n
 			<tr><th>Civilité</th><td>$client[civilite]</td></tr>\n
 			<tr><th>Nom</th><td>$client[nom]</td></tr>\n
@@ -160,11 +160,11 @@ function fiche()
 function ajouter()
 {
 	echo "<h2>Ajout d'un client</h2>\n";
-	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class='but' href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	?>
 	<form method="post" action="index.php?page=clients">
 	<input type="hidden" name="submit" value="ajouter" />
-	<table border="1">
+	<table >
 		<tr><th>Numéro de carte *</th><td><input type="text" name="numeroCarte" /></td></tr>
 		<tr><th>Civilité *</th><td><input type="radio" id="mr" name="civilite" value="Mr" /><label for="mr">Mr.</label><br />
 		<input type="radio" name="civilite" id="mme" value="Mme" /><label for="mme">Mme.</label><br />
@@ -199,7 +199,7 @@ function ajouter()
 function modifier()
 {
 	echo "<h2>Modification d'un client</h2>\n";
-	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class='but' href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
@@ -207,7 +207,7 @@ function modifier()
 		echo "<form method='post' action='index.php?page=clients'>\n
 		<input type='hidden' name='submit' value='modifier' />\n
 		<input type='hidden' name='id' value='$client[id]' />\n
-		<table border='1'>\n
+		<table >\n
 			<tr><th>Numéro de carte</th><td><input type='text' name='numeroCarte' value='$client[numeroCarte]' /></td></tr>\n
 			<tr><th>Civilité</th><td><input type='radio' name='civilite' id='mr' value='Mr' ";
 		if($client['civilite'] == "Mr")
@@ -266,7 +266,7 @@ function modifier()
 function supprimer()
 {
 	echo "<h2>Suppression d'un client</h2>\n";
-	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class='but' href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{

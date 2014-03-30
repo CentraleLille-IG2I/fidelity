@@ -100,9 +100,9 @@ function fiche()
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
 		$reduction = getReductionById($_GET['id']) or die('Une erreur est survenue.');
-		echo "<a href=\"index.php?page=reductions&mode=modifier&id=$reduction[id]\">Modifier la réduction</a>\n";
-		echo "<a href=\"index.php?page=reductions&mode=supprimer&id=$reduction[id]\">Supprimer la réduction</a>\n";
-		echo "<table border=\"1\">\n
+		echo "<a class=\"but\" href=\"index.php?page=reductions&mode=modifier&id=$reduction[id]\">Modifier la réduction</a>\n";
+		echo "<a class=\"but\" href=\"index.php?page=reductions&mode=supprimer&id=$reduction[id]\">Supprimer la réduction</a>\n";
+		echo "<table >\n
 			<tr><th>Description</th><td>$reduction[description]</td></tr>\n
 			<tr><th>Coût</th><td>$reduction[cout]</td></tr>\n
 			<tr><th>Valeur</th><td>$reduction[valeur] ";
@@ -128,11 +128,11 @@ function fiche()
 function ajouter()
 {
 	echo "<h2>Ajout d'une réduction</h2>\n";
-	echo "<a href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
+	echo "<a  class=\"but\" href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
 	?>
 	<form method="post" action="index.php?page=reductions">
 	<input type="hidden" name="submit" value="ajouter" />
-	<table border="1">
+	<table >
 		<tr><th>Description</th><td><input type="text" name="description" /></td></tr>
 		<tr><th>Coût</th><td><input type="text" name="cout" /></td></tr>
 		<tr><th>Valeur</th><td><input type="text" name="valeur" /> <select name="type">
@@ -156,7 +156,7 @@ function ajouter()
 function modifier()
 {
 	echo "<h2>Modification d'une réduction</h2>\n";
-	echo "<a href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
 
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
@@ -164,7 +164,7 @@ function modifier()
 		echo "<form method='post' action='index.php?page=reductions'>\n
 		<input type='hidden' name='submit' value='modifier' />\n
 		<input type='hidden' name='id' value='$reduction[id]' />\n
-		<table border='1'>\n
+		<table >\n
 		<tr><th>Description</th><td><input type='text' name='description' value='$reduction[description]' /></td></tr>\n
 		<tr><th>Coût</th><td><input type='text' name='cout' value='$reduction[cout]' /></td></tr>\n
 		<tr><th>Valeur</th><td><input type='text' name='valeur' value='$reduction[valeur]' /> <select name='type'>\n
@@ -197,7 +197,7 @@ function modifier()
 function supprimer()
 {
 	echo "<h2>Suppression d'une réduction</h2>\n";
-	echo "<a href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=reductions&mode=liste\">Annuler</a>\n";
 
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
@@ -238,9 +238,9 @@ function enregistrer()
 				}
 			}
 			if(newReduction($toInsert))
-				echo "<p class='notification'>Réduction ajoutée !</p>";
+				echo "<p class='notification positif'>Réduction ajoutée !</p>";
 			else
-				echo "<p class='notification'>Échec de l'ajout</p>";
+				echo "<p class='notification negatif'>Échec de l'ajout</p>";
 			break;
 
 		/*
@@ -255,9 +255,9 @@ function enregistrer()
 				}
 			}
 			if(updateReduction($_POST['id'],$toInsert))
-				echo "<p class='notification'>Réduction modifiée !</p>";
+				echo "<p class='notification positif'>Réduction modifiée !</p>";
 			else
-				echo "<p class='notification'>Échec de la modification.</p>";
+				echo "<p class='notification negatif'>Échec de la modification.</p>";
 			break;
 
 		/*
@@ -265,9 +265,9 @@ function enregistrer()
 		 */
 		case 'supprimer':
 			if(deleteReduction($_POST['id']))
-				echo "<p class='notification'>Réduction supprimée !</p>";
+				echo "<p class='notification positif'>Réduction supprimée !</p>";
 			else
-				echo "<p class='notification'>Échec de la suppression.</p>";
+				echo "<p class='notification negatif'>Échec de la suppression.</p>";
 			break;
 	}
 }

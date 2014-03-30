@@ -67,7 +67,6 @@ function initPage () {  // on supprime toutes les donnees HTML
 	document.getElementById("postReduc").style.display="none";
 	document.getElementById("preReduc").placeholder="Montant";
 	document.getElementById("postReduc").placeholder="Montant post-réduction";
-	document.getElementById("appliqueReduc").style.display="none";
 	document.getElementById("reducs").innerHTML="";
 	document.getElementById("cagnotteF").value="";
 }

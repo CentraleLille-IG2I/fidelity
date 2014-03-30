@@ -141,15 +141,13 @@
 		global $db;
 		$request = $db->prepare('SELECT * from `Reductions`');
 		$request->execute();
+		$toReturn = array();
 		while($data = $request->fetch())
 		{
 			$toReturn[] = $data;
 		}
 		$request->closeCursor();
-		if(isset($toReturn))
-			return $toReturn;
-		else
-			return E_ERROR;
+		return $toReturn;
 	}
 	
 	/*---------------------------*
@@ -488,22 +486,29 @@
 	{
 		global $db;
 		if (isset($toAdd['idUser']) && isset($toAdd['cagnotte']) && isset($toAdd['valeurInitiale']) && isset($toAdd['valeurFinale']))
-		{			
+		{
+			$date = date("Y-m-d"); // Génère la date actuelle
+			
 			$request = $db->prepare("UPDATE `Clients` SET `cagnotte`=?+? WHERE `id`=? LIMIT 1");
-			$request->execute(array($toAdd['cagnotte'],$toAdd['valeurInitiale'],$toAdd['idUser']));
+			if($toAdd['valeurFinale']==""){
+				$request->execute(array($toAdd['cagnotte'],$toAdd['valeurInitiale'],$toAdd['idUser']));
+			}
+			else{
+				$request->execute(array($toAdd['cagnotte'],$toAdd['valeurFinale'],$toAdd['idUser']));
+			}
 			
 			if(isset($toAdd['check'])) // S'il y a des réductions à appliquer
 			{
 				foreach($toAdd['check'] as $idReduc) // Pour chaque réduction
 				{
-					$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,CURDATE())");
-					$request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale']));
+					$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,?)");
+					$request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale'],$date));
 				}
 			}
 			else
 			{
-				$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,CURDATE())");
-				$request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale']));
+				$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,?)");
+				$request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale'],$date));
 			}
 		}
 		else

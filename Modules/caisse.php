@@ -56,8 +56,8 @@ function caisse()
 {
 ?>
 
-<a href="index.php?page=caisse&mode=total">Voir les totaux de la journée</a>
-<form action="index.php?page=caisse" method="post">
+<a class="but" href="index.php?page=caisse&mode=total">Voir les totaux de la journée</a>
+<form id="caisselist"action="index.php?page=caisse" method="post">
 	<input type="hidden" name="submit" value="reducter" />
 	<input id="idUser" type="hidden" name="idUser" value="" />
 	<input id="cagnotteF" type="hidden" name="cagnotte" value="" />
@@ -80,7 +80,7 @@ function caisse()
 		<input type="text" id="postReduc" name="valeurFinale" placeholder="Montant post-réduction" style=display:none /><br />
 	</div>
 	
-	<input type="submit" id="appliqueReduc" value="Valider la vente" style=display:none disabled />
+	<input type="submit" id="appliqueReduc" value="Valider la vente" />
 </form>
 
 	<script type='text/javascript' src='Scripts/jquery.js'></script>
@@ -92,7 +92,8 @@ function caisse()
 function total()
 {
 	$values = getTodayTotal();
-	echo "<table border='1\'><tr><th>Chiffre d'affaire</th><td>$values[total]&nbsp;€</td></tr>\n
+	echo "<a class=\"but\" href=\"index.php?page=caisse\">Annuler</a>\n";
+	echo "<table ><tr><th>Chiffre d'affaire</th><td>$values[total]&nbsp;€</td></tr>\n
 	<th>Réductions</th><td>$values[reduction]&nbsp;€</td></tr>\n</table>";
 }
 
@@ -100,11 +101,11 @@ function enregistrer()
 {
 	if(addHistory($_POST))
 	{
-		echo "<p class='notification succes'>Achat validé !</p>";
+		echo "<p class='notification positif'>Achat validé !</p>";
 	}
 	else
 	{
-		echo "<p class='notification echec'>Erreur lors de l'enregistrement</p>";
+		echo "<p class='notification negatif'>Erreur lors de l'enregistrement</p>";
 	}
 }
 ?>
