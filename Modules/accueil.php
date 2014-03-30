@@ -13,11 +13,8 @@
 <p>Bonjour et bienvenue sur Fidelity, le système de gestion de fidélité pour vous ! Vous pouvez dès à présent commencer à utiliser Fidelity en accédant aux différents modules ci-dessous. </p>
 
 <ul>
-		<li><a href="?page=accueil">Accueil</a></li>
-		<li><a href="?page=aide">Aide</a></li>
-		<li><a href="?page=apropos">À propos</a></li>
 		<li><a href="?page=caisse">Caisse</a></li>
 		<li><a href="?page=clients">Clients</a></li>
-		<li><a href="?page=mail">Mail</a></li>
 		<li><a href="?page=reductions">Réductions</a></li>
+		<li><a href="?page=mail">Mail &amp; SMS</a></li>
 </ul>

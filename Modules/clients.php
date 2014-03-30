@@ -126,8 +126,8 @@ function fiche()
 		else $aboMail="non";
 		if($client['aboSms']==1) $aboSms="oui";
 		else $aboSms="non";
-	echo "<a href=\"index.php?page=clients&mode=modifier&id=$client[id]\">Modifier le client</a>\n";
-	echo "<a href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
+	echo "<a class=\"but\"href=\"index.php?page=clients&mode=modifier&id=$client[id]\">Modifier le client</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=clients&mode=supprimer&id=$client[id]\">Supprimer le client</a>\n";
 		echo "<table border=\"1\">\n
 			<tr><th>Numéro de carte</th><td>$client[numeroCarte]</td></tr>\n
 			<tr><th>Civilité</th><td>$client[civilite]</td></tr>\n
@@ -160,7 +160,7 @@ function fiche()
 function ajouter()
 {
 	echo "<h2>Ajout d'un client</h2>\n";
-	echo "<a href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	?>
 	<form method="post" action="index.php?page=clients">
 	<input type="hidden" name="submit" value="ajouter" />
@@ -199,7 +199,7 @@ function ajouter()
 function modifier()
 {
 	echo "<h2>Modification d'un client</h2>\n";
-	echo "<a href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
@@ -266,7 +266,7 @@ function modifier()
 function supprimer()
 {
 	echo "<h2>Suppression d'un client</h2>\n";
-	echo "<a href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
+	echo "<a class=\"but\" href=\"index.php?page=clients&mode=liste\">Annuler</a>\n";
 	
 	if(isset($_GET['id']) && !empty($_GET['id']))
 	{
@@ -307,9 +307,9 @@ function enregistrer()
 				}
 			}
 			if(newClient($toInsert))
-				echo "<p class='notification'>Client ajouté !</p>";
+				echo "<p class='notification positif'>Client ajouté !</p>";
 			else
-				echo "<p class='notification'>Échec de l'ajout</p>";
+				echo "<p class='notification negatif'>Échec de l'ajout</p>";
 			break;
 		
 		/*
@@ -324,9 +324,9 @@ function enregistrer()
 				}
 			}
 			if(updateClient($_POST['id'],$toInsert))
-				echo "<p class='notification'>Client modifié !</p>";
+				echo "<p class='notification positif'>Client modifié !</p>";
 			else
-				echo "<p class='notification'>Échec de la modification.</p>";
+				echo "<p class='notification negatif'>Échec de la modification.</p>";
 			break;
 		
 		/*
@@ -334,9 +334,9 @@ function enregistrer()
 		 */
 		case 'supprimer':
 			if(deleteClient($_POST['id']))
-				echo "<p class='notification'>Client supprimé !</p>";
+				echo "<p class='notification positif'>Client supprimé !</p>";
 			else
-				echo "<p class='notification'>Échec de la suppression.</p>";
+				echo "<p class='notification negatif'>Échec de la suppression.</p>";
 			break;
 	}
 }

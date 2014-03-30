@@ -11,5 +11,5 @@
 
 <div id="footer">
 	<hr />
-	<p>Basly-Primeur</p>
+	<p>Basly Primeurs — <a class="but" href="?page=apropos">À propos</a> — <a class="but" href="?page=aide">Aide</a></p>
 </div>

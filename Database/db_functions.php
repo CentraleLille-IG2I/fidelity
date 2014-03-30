@@ -146,7 +146,10 @@
 			$toReturn[] = $data;
 		}
 		$request->closeCursor();
-		return $toReturn;
+		if(isset($toReturn))
+			return $toReturn;
+		else
+			return E_ERROR;
 	}
 	
 	/*---------------------------*
@@ -485,9 +488,7 @@
 	{
 		global $db;
 		if (isset($toAdd['idUser']) && isset($toAdd['cagnotte']) && isset($toAdd['valeurInitiale']) && isset($toAdd['valeurFinale']))
-		{
-			$date = date("Y-m-d"); // Génère la date actuelle
-			
+		{			
 			$request = $db->prepare("UPDATE `Clients` SET `cagnotte`=?+? WHERE `id`=? LIMIT 1");
 			$request->execute(array($toAdd['cagnotte'],$toAdd['valeurInitiale'],$toAdd['idUser']));
 			
@@ -495,14 +496,14 @@
 			{
 				foreach($toAdd['check'] as $idReduc) // Pour chaque réduction
 				{
-					$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,?)");
-					$request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale'],$date));
+					$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,CURDATE())");
+					$request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale']));
 				}
 			}
 			else
 			{
-				$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,?)");
-				$request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale'],$date));
+				$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,CURDATE())");
+				$request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale']));
 			}
 		}
 		else
