@@ -92,7 +92,7 @@ function MAIL_conf(){
 	echo "		</p> </div> <br/>
 		<input type=\"submit\" name=\"conf\" value=\"Confirmer\" />
 		<input type=\"submit\" name=\"conf\" value=\"Retour\" />
-		<input type=\"hidden\" name=\"SubButton\" value=\"Mail\" />
+		<input type=\"hidden\" name=\"SubButton\" value=\"Envoyer le Mail\" />
 		<input type=\"hidden\" name=\"Message\" value=\"".$_POST["Message"]."\" />
 		<input type=\"hidden\" name=\"objet\" value=\"".$_POST["objet"]."\" /> 
 	</form>";
@@ -113,6 +113,8 @@ function RenderMail($mess, $varClient)
 
 function SendMail()
 {
+	global $string;
+	ini_set( "display_errors", 0);
 	$nbr = 0;
 	$fnbr = 0;
 	$list=getAllClients();
@@ -123,8 +125,8 @@ function SendMail()
 			$to      = $client["mail"];
 			$subject = $_POST["objet"];
 			$message = RenderMail($_POST["Message"], $client);
-			$headers = 'From: sauron@mordor.tm' . "\r\n" .
-			'Reply-To: webmaster@example.com' . "\r\n" .
+			$headers = 'From: ' . $string["NameSenderMail"] . "\r\n" .
+			//'Reply-To: webmaster@example.com' . "\r\n" .
 			'X-Mailer: PHP/' . phpversion();
 			if (mail($to, $subject, $message, $headers))
 			{
@@ -169,7 +171,7 @@ function saisi($default){
 			//alert(ch.value);
 			var out = document.getElementById(\"outputMess\");
 			var t = ch.value.replace(reg, \"<span style='color:red;'>$1</span>\");
-			out.innerHTML = t.replace(/(\\n|\\n\\r|\\r\\n)/g, \"<BR />\")
+			//out.innerHTML = t.replace(/(\\n|\\n\\r|\\r\\n)/g, \"<BR />\")
 		}
 		
 		
