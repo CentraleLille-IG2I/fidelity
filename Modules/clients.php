@@ -180,7 +180,7 @@ function ajouter()
 		<tr><th>Abonnement mail *</th><td><input type="radio" id="mail0" name="aboMail" value="0" checked/><label for="mail0">Non</label><br />
 		<input type="radio" name="aboMail" id="mail1" value="1" /><label for="mail1">Oui</label></td></tr>
 		<tr><th>Abonnement SMS *</th><td><input type="radio" id="sms0" name="aboSms" value="0" checked/><label for="sms0">Non</label><br />
-		<input type="radio" name="aboSms" id="sms1" "value="1" /><label for="sms1">Oui</label></td></tr>
+		<input type="radio" name="aboSms" id="sms1" value="1" /><label for="sms1">Oui</label></td></tr>
 		<tr><th>Date de naissance</th><td><input type="date" name="dateDeNaissance" /></td></tr>
 		<tr><th>Intérêts</th><td><input type="text" name="interets" /></td></tr>
 	</table>
@@ -241,7 +241,7 @@ function modifier()
 			if(!$client['aboSms'])
 				echo "checked";
 			echo "/><label for='sms0'>Non</label><br />\n
-			<input type='radio' name='aboSms' id='sms1' 'value='1' ";
+			<input type='radio' name='aboSms' id='sms1' value='1' ";
 			if($client['aboSms'])
 				echo "checked";
 			echo "/><label for='sms1'>Oui</label></td></tr>\n
@@ -306,6 +306,7 @@ function enregistrer()
 					$toInsert[$key] = $value;
 				}
 			}
+			echo "<pre>POST:";print_r($_POST);echo "</pre>";
 			if(newClient($toInsert))
 				echo "<p class='notification positif'>Client ajouté !</p>";
 			else
