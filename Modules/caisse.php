@@ -93,8 +93,18 @@ function total()
 {
 	$values = getTodayTotal();
 	echo "<a class=\"but\" href=\"index.php?page=caisse\">Annuler</a>\n";
-	echo "<table ><tr><th>Chiffre d'affaire</th><td>$values[total]&nbsp;€</td></tr>\n
-	<th>Réductions</th><td>$values[reduction]&nbsp;€</td></tr>\n</table>";
+	echo "<table ><tr><th>Chiffre d'affaire</th><td>";
+	if(empty($values['total']))
+		echo "0";
+	else
+		echo $values['total'];
+	echo "&nbsp;€</td></tr>\n
+	<th>Réductions</th><td>";
+	if(empty($values['reduction']))
+		echo "0";
+	else
+		echo $values['reduction'];
+	echo "&nbsp;€</td></tr>\n</table>";
 }
 
 function enregistrer()
