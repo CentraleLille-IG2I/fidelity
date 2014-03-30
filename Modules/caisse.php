@@ -57,13 +57,14 @@ function caisse()
 ?>
 
 <a class="but" href="index.php?page=caisse&mode=total">Voir les totaux de la journée</a>
-<form id="caisselist"action="index.php?page=caisse" method="post">
+
+	<h2>Passage en caisse</h2>
+	Numéro de carte: <input type="text" id="numeroCarte" onkeydown="verifEntree()" autofocus />
+	<input type="button" onClick="getClient()" value="Valider" /><br />
+	<form id="caisselist"action="index.php?page=caisse" method="post">
 	<input type="hidden" name="submit" value="reducter" />
 	<input id="idUser" type="hidden" name="idUser" value="" />
 	<input id="cagnotteF" type="hidden" name="cagnotte" value="" />
-
-	Numéro de carte: <input type="text" id="numeroCarte" onkeydown="verifEntree()" autofocus />
-	<input type="button" onClick="getClient()" value="Valider" /><br />
 	Nom: <span id="nom"></span><br />
 	Prénom: <span id="prenom"></span><br />
 	Ville: <span id="ville"></span><br />
@@ -73,12 +74,12 @@ function caisse()
 	Adresse mail: <span id="adresseMail"></span><br />
 	Cagnotte: <span id="cagnotte"></span><br />
 
-	<div id="reducs"></div>
-	
 	<div id="prix">
 		<input type="text" id="preReduc" name="valeurInitiale" placeholder="Montant" onkeyup="transfertMontant();checkSubmit();" /><br />
-		<input type="text" id="postReduc" name="valeurFinale" placeholder="Montant post-réduction" style=display:none /><br />
+		<input type="text" id="postReduc" name="valeurFinale" placeholder="Montant post-réduction" style=display:none disabled/><br />
 	</div>
+	
+	<div id="reducs"></div>
 	
 	<input type="submit" id="appliqueReduc" value="Valider la vente" />
 </form>
