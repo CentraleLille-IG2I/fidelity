@@ -115,28 +115,34 @@ function SendMail()
 {
 	global $string;
 	ini_set( "display_errors", 0);
+	set_time_limit(0);
 	$nbr = 0;
 	$fnbr = 0;
 	$list=getAllClients();
-	foreach($list as $client)
-	{
-		if($client["aboMail"]==1)
+	
+	$i=0;
+	while($i!=100){
+		foreach($list as $client)
 		{
-			$to      = $client["mail"];
-			$subject = $_POST["objet"];
-			$message = RenderMail($_POST["Message"], $client);
-			$headers = 'From: ' . $string["NameSenderMail"] . "\r\n" .
-			//'Reply-To: webmaster@example.com' . "\r\n" .
-			'X-Mailer: PHP/' . phpversion();
-			if (mail($to, $subject, $message, $headers))
+			if($client["aboMail"]==1)
 			{
-				$nbr++;
-			}
-			else
-			{
-				$fnbr++;
+				$to      = $client["mail"];
+				$subject = $_POST["objet"];
+				$message = RenderMail($_POST["Message"], $client);
+				$headers = 'From: ' . $string["NameSenderMail"] . "\r\n" .
+				//'Reply-To: webmaster@example.com' . "\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+				if (mail($to, $subject, $message, $headers))
+				{
+					$nbr++;
+				}
+				else
+				{
+					$fnbr++;
+				}
 			}
 		}
+		$i+=1;
 	}
 	if ($nbr>0)
 	{
