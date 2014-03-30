@@ -12,3 +12,7 @@ $(function() {
 		});
 	});
 });
+
+function redirection(idClient){
+	document.location.href="index.php?page=clients&mode=fiche&id="+idClient;
+}

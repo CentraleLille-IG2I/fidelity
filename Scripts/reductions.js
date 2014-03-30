@@ -12,3 +12,7 @@ $(function() {
 		});
 	});
 });
+
+function redirection(idReduc){
+	document.location.href="index.php?page=reductions&mode=fiche&id="+idReduc;
+}
