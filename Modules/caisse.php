@@ -99,13 +99,13 @@ function total()
 	if(empty($values['total']))
 		echo "0";
 	else
-		echo $values['total'];
+		echo round($values['total'],2);
 	echo "&nbsp;€</td></tr>\n
 	<th>Réductions</th><td>";
 	if(empty($values['reduction']))
 		echo "0";
 	else
-		echo $values['reduction'];
+		echo round($values['reduction'],2);
 	echo "&nbsp;€</td></tr>\n</table>";
 }
 

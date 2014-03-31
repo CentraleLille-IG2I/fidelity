@@ -195,7 +195,7 @@ function checkSubmit()
 {
 	oBut = document.getElementById('appliqueReduc');
 	oVal = document.getElementById('preReduc');
-	var pattern = new RegExp("^[0-9]+\.[0-9]{0,2}$");
+	var pattern = new RegExp("^[0-9]*\.[0-9]{0,2}$");
 	console.log(oVal.value);
 	if(pattern.test(oVal.value))
 	{
