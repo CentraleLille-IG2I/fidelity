@@ -63,6 +63,10 @@
 				include_once($filename["mail"]);
 				break;
 			
+			case "options":
+				include_once($filename["options"]);
+				break;
+			
 			case "reductions":
 				include_once($filename["reductions"]);
 				break;

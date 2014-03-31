@@ -306,7 +306,6 @@ function enregistrer()
 					$toInsert[$key] = $value;
 				}
 			}
-			echo "<pre>POST:";print_r($_POST);echo "</pre>";
 			if(newClient($toInsert))
 				echo "<p class='notification positif'>Client ajouté !</p>";
 			else

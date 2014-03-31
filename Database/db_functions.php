@@ -536,4 +536,22 @@
 		$request->closeCursor();
 		return true;
 	}
+	
+	// Toutes tables
+	
+	/*---------------------------*
+	 * Fonction :	deleteAll
+	 * Paramètres :	
+	 * Retour :		Booléen
+	 * Description :	Supprime l'intégralité des données
+	/*---------------------------*/
+	function deleteAll()
+	{
+		global $db;
+		$request = $db->prepare("DELETE FROM `Clients` WHERE 1");
+		$request->execute(array());
+		$request = $db->prepare("DELETE FROM `Reductions` WHERE 1");
+		$request->execute(array());
+		return true;
+	}
 ?>

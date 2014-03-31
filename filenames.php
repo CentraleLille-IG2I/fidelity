@@ -33,6 +33,7 @@
 	$filename["caisse"]	= "Modules/caisse.php";
 	$filename["clients"]	= "Modules/clients.php";
 	$filename["mail"]	= "Modules/mail.php";
+	$filename["options"]	= "Modules/options.php";
 	$filename["reductions"]	= "Modules/reductions.php";
 	
 	
