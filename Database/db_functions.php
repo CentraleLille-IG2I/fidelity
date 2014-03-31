@@ -485,56 +485,64 @@
 	function addHistory($toAdd)
 	{
 		global $db;
+		echo "<pre>";print_r($_POST);echo "</pre>";
 		if(isset($toAdd['idUser']) && isset($toAdd['cagnotte']) && isset($toAdd['valeurInitiale']) && isset($toAdd['valeurFinale']))
 		{
+			echo "isset OK !";
 			if((!empty($toAdd['idUser']) || $toAdd['idUser'] == 0) && (!empty($toAdd['cagnotte']) || $toAdd['cagnotte'] == 0) && (!empty($toAdd['valeurInitiale']) || $toAdd['valeurInitiale'] == 0) && (!empty($toAdd['valeurFinale']) || $toAdd['valeurFinale'] == 0))
 			{
+				echo "empty OK !";
 				$request = $db->prepare("UPDATE `Clients` SET `cagnotte`=?+? WHERE `id`=? LIMIT 1");
-				$request->execute(array($toAdd['cagnotte'],$toAdd['valeurFinale'],$toAdd['idUser']));
-				if($request->rowCount() == 0)
+				if($toAdd['valeurFinale']=="")
 				{
-					$request->closeCursor();
-					return false;
-				}
-				
-				if(isset($toAdd['check'])) // S'il y a des réductions à appliquer
-				{
-					foreach($toAdd['check'] as $idReduc) // Pour chaque réduction
-					{
-						$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,CURDATE())");
-						$request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale']));
-						if($request->rowCount() == 0)
-						{
-							$request->closeCursor();
-							return false;
-						}
-					}
-				}
-				else
-				{
-					$request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,CURDATE())");
-					$request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale']));
-					if($request->rowCount() == 0)
-					{
-						$request->closeCursor();
-						return false;
-					}
-				}
-			}
-			else
-			{
-				$request->closeCursor();
-				return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
-		
-		$request->closeCursor();
-		return true;
-	}
+                    $request->execute(array($toAdd['cagnotte'],$toAdd['valeurInitiale'],$toAdd['idUser']));
+                }
+                else
+                {
+                    $request->execute(array($toAdd['cagnotte'],$toAdd['valeurFinale'],$toAdd['idUser']));
+                }
+                if($request->rowCount() == 0)
+                {
+                    $request->closeCursor();
+                    return false;
+                }
+                
+                if(isset($toAdd['check'])) // S'il y a des réductions à appliquer
+                {
+                    foreach($toAdd['check'] as $idReduc) // Pour chaque réduction
+                    {
+                        $request = $db->prepare("INSERT INTO `Historique` (`idClient`,`idReduction`,`total`,`reduction`,`date`) VALUES (?,?,?,?,CURDATE())");
+                        $request->execute(array($toAdd['idUser'],$idReduc,$toAdd['valeurInitiale'],$toAdd['valeurInitiale']-$toAdd['valeurFinale']));
+                        if($request->rowCount() == 0)
+                        {
+                            $request->closeCursor();
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    $request = $db->prepare("INSERT INTO `Historique` (`idClient`,`total`,`reduction`,`date`) VALUES (?,?,0,CURDATE())");
+                    $request->execute(array($toAdd['idUser'],$toAdd['valeurInitiale']));
+                    if($request->rowCount() == 0)
+                    {
+                        $request->closeCursor();
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                $request->closeCursor();
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        return true;
+}
 	
 	// Toutes tables
 	

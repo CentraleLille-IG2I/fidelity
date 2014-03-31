@@ -61,7 +61,7 @@ function caisse()
 	<h2>Passage en caisse</h2>
 	Numéro de carte: <input type="text" id="numeroCarte" onkeydown="verifEntree()" autofocus />
 	<input type="button" onClick="getClient()" value="Valider" /><br />
-	<form id="caisselist"action="index.php?page=caisse" method="post">
+	<form id="caisselist" action="index.php?page=caisse" method="post">
 	<input type="hidden" name="submit" value="reducter" />
 	<input id="idUser" type="hidden" name="idUser" value="" />
 	<input id="cagnotteF" type="hidden" name="cagnotte" value="" />
@@ -76,7 +76,7 @@ function caisse()
 
 	<div id="prix">
 		<input type="text" id="preReduc" name="valeurInitiale" placeholder="Montant" onkeyup="transfertMontant();checkSubmit();" /><br />
-		<input type="text" id="postReduc" name="valeurFinale" placeholder="Montant post-réduction" style=display:none disabled/><br />
+		<input type="text" id="postReduc" name="valeurFinale" placeholder="Montant post-réduction" style=display:none /><br />
 	</div>
 	
 	<div id="reducs"></div>
