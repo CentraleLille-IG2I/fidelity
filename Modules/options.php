@@ -28,9 +28,13 @@ echo "<h1>Options</h1>\n";
 			case "supprimer":
 				supprimer();
 				break;
-			
+                
 			case "sauvegarde":
 				sauvegarde();
+				break;
+                
+			case "charger":
+				charger();
 				break;
 			
 			default:
@@ -61,7 +65,8 @@ function liste()
 {
 ?>
 	<ul>
-		<li><a href="?page=options&mode=sauvegarder">Sauvegarder les données</a></li><br />
+		<li><a href="?page=options&mode=sauvegarde">Sauvegarder les données</a></li><br />
+<li><a href="?page=options&mode=charger">Charger des données</a></li><br />
 		<li><a href="?page=options&mode=supprimer">Effacer toutes les données</a></li>
 	</ul>
 <?php
@@ -84,25 +89,49 @@ function supprimer()
 	<form method="post" action="?page=options">
 		<input type="hidden" name="submit" value="supprimer" />
 		<input type="submit" value="Supprimer" />
-	</form>
+    </form>
 <?php
 }
 
 
 /*---------------------------*
- * Fonction :	sauvegarder
+ * Fonction :	sauvegarde
+ * Paramètres :	Aucun
+ * Retour :		Aucun
+ * Description :	Génère un fichier de sauvegarde des données de la base.
+ /*---------------------------*/
+function sauvegarde()
+{
+?>
+    <h2>Sauvegarder les données</h2>
+    <a class="but" href="?page=options">Annuler</a>
+    <p>Une sauvegarde sera créée sur le Bureau en tant que "fidelity.sql". Voulez-vous continuer ?</p>
+    <form method="post" action="?page=options">
+    <input type="hidden" name="submit" value="sauvegarde" />
+    <input type="submit" value="Valider" />
+    </form>
+<?php
+}
+
+
+/*---------------------------*
+ * Fonction :	charger
  * Paramètres :	Aucun
  * Retour :		Aucun
  * Description :	Génère un fichier de sauvegarde des données de la base.
 /*---------------------------*/
-function sauvegarder()
+function charger()
 {
 ?>
-	<h2>Sauvegarder les données</h2>
-	<a class="but" href="?page=options">Annuler</a>
+    <h2>Charger des données</h2>
+    <a class="but" href="?page=options">Annuler</a>
+    <p>Charger des données ?</p>
+    <form method="post" action="?page=options">
+    <input type="hidden" name="submit" value="charger" />
+    <input type="submit" value="Valider" />
+    </form>
 <?php
 }
-
 
 /*---------------------------*
  * Fonction :	enregistrer
@@ -124,33 +153,26 @@ function enregistrer()
 			else
 				echo "<p class='notification negatif'>Échec lors de la suppression</p>";
 			break;
-		
-		/*
-		 * Modifier
-		 */
-		case 'modifier':
-			foreach($_POST as $key => $value)
-			{
-				if(in_array($key,$fields))
-				{
-					$toInsert[$key] = $value;
-				}
-			}
-			if(updateClient($_POST['id'],$toInsert))
-				echo "<p class='notification positif'>Client modifié !</p>";
-			else
-				echo "<p class='notification negatif'>Échec de la modification.</p>";
-			break;
-		
-		/*
-		 * Supprimer
-		 */
-		case 'supprimer':
-			if(deleteClient($_POST['id']))
-				echo "<p class='notification positif'>Client supprimé !</p>";
-			else
-				echo "<p class='notification negatif'>Échec de la suppression.</p>";
-			break;
+            
+        /*
+         * Sauvegarde
+         */
+		case 'sauvegarde':
+            if(backup())
+                echo "<p class='notification positif'>Sauvagarde effectutée</p>";
+            else
+                echo "<p class='notification negatif'>Échec de la sauvegarde</p>";
+            break;
+            
+        /*
+         * Charger
+         */
+		case 'charger':
+            if(import())
+                echo "<p class='notification positif'>Importation effectutée</p>";
+            else
+                echo "<p class='notification negatif'>Échec de l'importation</p>";
+            break;
 	}
 }
 ?>

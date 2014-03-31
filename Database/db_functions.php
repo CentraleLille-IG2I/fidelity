@@ -485,13 +485,10 @@
 	function addHistory($toAdd)
 	{
 		global $db;
-		echo "<pre>";print_r($_POST);echo "</pre>";
 		if(isset($toAdd['idUser']) && isset($toAdd['cagnotte']) && isset($toAdd['valeurInitiale']) && isset($toAdd['valeurFinale']))
 		{
-			echo "isset OK !";
 			if((!empty($toAdd['idUser']) || $toAdd['idUser'] == 0) && (!empty($toAdd['cagnotte']) || $toAdd['cagnotte'] == 0) && (!empty($toAdd['valeurInitiale']) || $toAdd['valeurInitiale'] == 0) && (!empty($toAdd['valeurFinale']) || $toAdd['valeurFinale'] == 0))
 			{
-				echo "empty OK !";
 				$request = $db->prepare("UPDATE `Clients` SET `cagnotte`=?+? WHERE `id`=? LIMIT 1");
 				if($toAdd['valeurFinale']=="")
 				{
@@ -561,4 +558,55 @@
 		$request->execute(array());
 		return true;
 	}
+	
+    
+	/*---------------------------*
+	 * Fonction :	import
+	 * Paramètres : POST
+	 * Retour :		Booléen
+	 * Description :	Réinitialise la base de données et importe une nouvelle version
+     /*---------------------------*/
+	function import()
+	{
+		global $db;
+		$hostname	= "localhost";
+		$dbname		= "fidelity";
+		$username	= "root";
+		$password	= "root";
+        $dumpfile   = "~/Desktop/fidelity.sql";
+        
+        // Nom de la commande à changer selon le système
+        $command = "/Applications/MAMP/Library/bin/mysql --host=$hostname --database=$dbname --user=$username --execute=$dumpfile ";
+        if($password)
+            $command.= "--password=$password";
+        echo $command;
+        exec($command,$null,$toReturn);
+        return ($toReturn == 0);
+    }
+	
+    
+	/*---------------------------*
+	 * Fonction :	backup
+	 * Paramètres :
+	 * Retour :		Booléen
+	 * Description :	Sauvegarde un fichier SQL contenant l'intégralité de la BDD (structure & contenu)
+     /*---------------------------*/
+	function backup()
+	{
+		global $db;
+		$hostname	= "localhost";
+		$dbname		= "fidelity";
+		$username	= "root";
+		$password	= "root";
+        $dumpfile   = "~/Desktop/fidelity.sql";
+        
+        // Nom de la commande à changer selon le système
+        $command = "/Applications/MAMP/Library/bin/mysqldump --host=$hostname --user=$username ";
+        if($password)
+            $command.= "--password=$password --skip-comments ";
+        $command .= $dbname." > $dumpfile";
+        echo "<pre>$command</pre>";
+        exec($command,$null,$toReturn);
+        return ($toReturn == 0);
+    }
 ?>
