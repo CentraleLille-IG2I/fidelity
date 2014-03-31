@@ -22,29 +22,28 @@ function getClient()
 				if (xmlhttp.readyState==4 && xmlhttp.status==200) //succes requete ajax
 					{
 						var kek = xmlhttp.responseText;
-						console.log("yolo");
-						console.log(kek);
 						data = eval("("+kek+")");
 						if(data["client"]["id"]!=undefined)
-						document.getElementById("idUser").value = data["client"]["id"];
+                            document.getElementById("idUser").value = data["client"]["id"];
 						if(data["client"]["nom"]!=undefined) // si le nom est definie, on remplie les donnees dans l'HTML
-						document.getElementById("nom").innerHTML = data["client"]["nom"]; // remplissage
+                            document.getElementById("nom").innerHTML = data["client"]["nom"]; // remplissage
 						if(data["client"]["prenom"]!=undefined)
-						document.getElementById("prenom").innerHTML = data["client"]["prenom"];
+                            document.getElementById("prenom").innerHTML = data["client"]["prenom"];
 						if(data["client"]["ville"]!=undefined)
-						document.getElementById("ville").innerHTML = data["client"]["ville"];
+                            document.getElementById("ville").innerHTML = data["client"]["ville"];
 						if(data["client"]["codePostal"]!=undefined)
-						document.getElementById("codePostal").innerHTML = data["client"]["codePostal"];
+                            document.getElementById("codePostal").innerHTML = data["client"]["codePostal"];
 						if(data["client"]["telephone"]!=undefined)
-						document.getElementById("numeroTel").innerHTML = data["client"]["telephone"];
+                            document.getElementById("numeroTel").innerHTML = data["client"]["telephone"];
 						if(data["client"]["telephone2"]!=undefined)
-						document.getElementById("numeroTel2").innerHTML = data["client"]["telephone2"];
+                            document.getElementById("numeroTel2").innerHTML = data["client"]["telephone2"];
 						if(data["client"]["mail"]!=undefined)
-						document.getElementById("adresseMail").innerHTML = data["client"]["mail"];
-						if(data["client"]["cagnotte"]!=undefined){
-						document.getElementById("cagnotte").innerHTML = data["client"]["cagnotte"]
-						document.getElementById("cagnotteF").value = data["client"]["cagnotte"];
-						cagnotteInit=data["client"]["cagnotte"];
+                            document.getElementById("adresseMail").innerHTML = data["client"]["mail"];
+						if(data["client"]["cagnotte"]!=undefined)
+                        {
+                            document.getElementById("cagnotte").innerHTML = data["client"]["cagnotte"];
+                            document.getElementById("cagnotteF").value = data["client"]["cagnotte"];
+                            cagnotteInit=data["client"]["cagnotte"];
 						}
 						ajoutReducHtml(data);
 					}
@@ -54,7 +53,8 @@ function getClient()
 			xmlhttp.send();
 	}
 
-function initPage () {  // on supprime toutes les donnees HTML
+function initPage ()
+{  // on supprime toutes les donnees HTML
 	document.getElementById("idUser").value ="";
 	document.getElementById("nom").innerHTML ="";
 	document.getElementById("prenom").innerHTML ="";
@@ -64,19 +64,20 @@ function initPage () {  // on supprime toutes les donnees HTML
 	document.getElementById("numeroTel2").innerHTML ="";
 	document.getElementById("adresseMail").innerHTML ="";
 	document.getElementById("cagnotte").innerHTML ="";
-	document.getElementById("postReduc").style.display="none";
 	document.getElementById("preReduc").placeholder="Montant";
-	document.getElementById("postReduc").placeholder="Montant post-réduction";
+    document.getElementById("postReducSpan").innerHTML="";
 	document.getElementById("reducs").innerHTML="";
 	document.getElementById("cagnotteF").value="";
 }
 
-function ajoutReducHtml (toto) {
+function ajoutReducHtml (toto)
+{
+    
+    document.getElementById("postReducSpan").style.display="block"; // on affiche un span pour le montant post reduc
+    document.getElementById("preReduc").placeholder="Montant pré-réduction"; // on change le text de 'montant' a 'montant pré-reduction'
+    document.getElementById("appliqueReduc").style.display="block"; //affiche le div contenant le bouton de validation de la reduction
 	if(toto["reducs"]!=undefined && toto["reducs"].length>0) // si il y a au moins une reduc pour le client selected
 	{
-		document.getElementById("postReduc").style.display="block"; // on affiche un input pour le montant post reduc
-		document.getElementById("preReduc").placeholder="Montant pré-réduction"; // on change le text de 'montant' a 'montant pré-reduction'
-		document.getElementById("appliqueReduc").style.display="block"; //affiche le div contenant le bouton de validation de la reduction
 		for(var i=0;i<toto["reducs"].length;i++)
 		{
 			if(toto["reducs"][i]!=undefined)
@@ -164,6 +165,7 @@ function appliquerReduc(data, id)
 	montantPost=Math.round(montantPost*100)/100;
 	point=Math.round(point*100)/100;
 	document.getElementById('postReduc').value=montantPost.toString();
+	document.getElementById("postReducSpan").innerHTML=montantPost.toString();
 	document.getElementById("cagnotte").innerHTML=point.toString();
 	document.getElementById("cagnotteF").value=point.toString();		
 }
@@ -173,6 +175,7 @@ function transfertMontant()
 	if(event.keyCode != 13)
 	{
 		document.getElementById('postReduc').value=document.getElementById('preReduc').value; // on recopie la valeur de pre reduc dans post reduc
+		document.getElementById("postReducSpan").innerHTML=document.getElementById('preReduc').value; // on recopie la valeur de pre reduc dans post reduc
 			var check = $("#reducs").find(':checkbox'); // recupere tous les checkbox du div reducs
 			check.attr('checked', false); //decoche tous les checkbox
 			document.getElementById("cagnotte").innerHTML = cagnotteInit;
