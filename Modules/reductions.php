@@ -77,7 +77,7 @@ function liste()
 	echo "<table id=\"liste\">\n<tr><th>Description</th><th>Coût</th><th>Valeur</th><th>Date de début</th><th>Date de fin</th></tr>\n";
 	foreach($reductions as $reduction)
 	{
-		echo "<tr id=\"$reduction[id]\" onclick=\"redirection($reduction[id])\"><td><a href=\"index.php?page=reductions&mode=fiche&id=$reduction[id]\">$reduction[description]</a></td><td>$reduction[cout]</td><td>$reduction[valeur] ";
+		echo "<tr class='ligne' id=\"$reduction[id]\" onclick=\"redirection($reduction[id])\"><td><a href=\"index.php?page=reductions&mode=fiche&id=$reduction[id]\">$reduction[description]</a></td><td>$reduction[cout]</td><td>$reduction[valeur] ";
 		if($reduction['type'] == "brut") // Affichage du symbole "%" ou "€" en fonction du type
 			echo "€";
 		else
