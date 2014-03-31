@@ -104,7 +104,7 @@ function liste()
 		else
 			$mail=$client['mail'];
 		
-		echo "<tr id=\"$client[id]\" onclick=\"redirection($client[id])\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$telephone</td><td>$telephone2</td><td>$mail</td><td>$aboMail</td><td>$aboSms</td></tr>\n";
+		echo "<tr class='ligne' id=\"$client[id]\" onclick=\"redirection($client[id])\"><td><a href=\"index.php?page=clients&mode=fiche&id=$client[id]\">$client[numeroCarte]</a></td><td>$client[nom]</td><td>$client[prenom]</td><td>$client[cagnotte]</td><td>$client[ville]</td><td>$client[codePostal]</td><td>$telephone</td><td>$telephone2</td><td>$mail</td><td>$aboMail</td><td>$aboSms</td></tr>\n";
 	}
 	echo "</table>";
 }
