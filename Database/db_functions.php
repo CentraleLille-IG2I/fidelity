@@ -529,7 +529,6 @@
 		}
 		else
 		{
-			$request->closeCursor();
 			return false;
 		}
 		
