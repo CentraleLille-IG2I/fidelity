@@ -165,24 +165,24 @@ function ajouter()
 	<form method="post" action="index.php?page=clients">
 	<input type="hidden" name="submit" value="ajouter" />
 	<table >
-		<tr><th>Numéro de carte *</th><td><input type="text" name="numeroCarte" /></td></tr>
-		<tr><th>Civilité *</th><td><input type="radio" id="mr" name="civilite" value="Mr" /><label for="mr">Mr.</label><br />
-		<input type="radio" name="civilite" id="mme" value="Mme" /><label for="mme">Mme.</label><br />
-		<input type="radio" name="civilite" id="mlle" value="Mlle" /><label for="mlle">Mlle.</label></td></tr>
-		<tr><th>Nom *</th><td><input type="text" name="nom" /></td></tr>
-		<tr><th>Prénom *</th><td><input type="text" name="prenom" /></td></tr>
-		<tr><th>Adresse *</th><td><input type="text" name="adresse" /></td></tr>
-		<tr><th>Ville *</th><td><input type="text" name="ville" /></td></tr>
-		<tr><th>Code postal</th><td><input type="text" name="codePostal" /></td></tr>
-		<tr><th>Téléphone</th><td><input type="text" name="telephone" /></td></tr>
-		<tr><th>Téléphone 2</th><td><input type="text" name="telephone2" /></td></tr>
-		<tr><th>Mail</th><td><input type="text" name="mail" /></td></tr>
+		<tr><th>Numéro de carte *</th><td><input type="text" name="numeroCarte"  autocomplete="off"/></td></tr>
+		<tr><th>Civilité *</th><td><input type="radio" id="mr" name="civilite" value="Mr"  autocomplete="off"/><label for="mr">Mr.</label><br />
+		<input type="radio" name="civilite" id="mme" value="Mme"  autocomplete="off"/><label for="mme">Mme.</label><br />
+		<input type="radio" name="civilite" id="mlle" value="Mlle" autocomplete="off" /><label for="mlle">Mlle.</label></td></tr>
+		<tr><th>Nom *</th><td><input type="text" name="nom"  autocomplete="off"/></td></tr>
+		<tr><th>Prénom *</th><td><input type="text" name="prenom"  autocomplete="off"/></td></tr>
+		<tr><th>Adresse *</th><td><input type="text" name="adresse"  autocomplete="off"/></td></tr>
+		<tr><th>Ville *</th><td><input type="text" name="ville"  autocomplete="off"/></td></tr>
+		<tr><th>Code postal</th><td><input type="text" name="codePostal"  autocomplete="off"/></td></tr>
+		<tr><th>Téléphone</th><td><input type="text" name="telephone"  autocomplete="off"/></td></tr>
+		<tr><th>Téléphone 2</th><td><input type="text" name="telephone2"  autocomplete="off"/></td></tr>
+		<tr><th>Mail</th><td><input type="text" name="mail"  autocomplete="off"/></td></tr>
 		<tr><th>Abonnement mail *</th><td><input type="radio" id="mail0" name="aboMail" value="0" checked/><label for="mail0">Non</label><br />
 		<input type="radio" name="aboMail" id="mail1" value="1" /><label for="mail1">Oui</label></td></tr>
 		<tr><th>Abonnement SMS *</th><td><input type="radio" id="sms0" name="aboSms" value="0" checked/><label for="sms0">Non</label><br />
 		<input type="radio" name="aboSms" id="sms1" value="1" /><label for="sms1">Oui</label></td></tr>
-		<tr><th>Date de naissance</th><td><input type="date" name="dateDeNaissance" /></td></tr>
-		<tr><th>Intérêts</th><td><input type="text" name="interets" /></td></tr>
+		<tr><th>Date de naissance</th><td><input type="date" name="dateDeNaissance"  autocomplete="off"/></td></tr>
+		<tr><th>Intérêts</th><td><input type="text" name="interets"  autocomplete="off"/></td></tr>
 	</table>
 	<p>Les champs marqués d'un astérisque (*) sont obligatoires.</p>
 	<input type="submit" value="Valider" />
@@ -221,13 +221,13 @@ function modifier()
 		if($client['civilite'] == "Mlle")
 			echo "checked";
 		echo "/><label for='mlle'>Mlle.</label></td></th>\n
-			<tr><th>Nom</th><td><input type='text' name='nom' value='$client[nom]' /></td></tr>\n
-			<tr><th>Prénom</th><td><input type='text' name='prenom' value='$client[prenom]' /></td></tr>\n
-			<tr><th>Adresse</th><td><input type='text' name='adresse' value='$client[adresse]' /></td></tr>\n
-			<tr><th>Ville</th><td><input type='text' name='ville' value='$client[ville]' /></td></tr>\n
-			<tr><th>Code postal</th><td><input type='text' name='codePostal' value='$client[codePostal]' /></td></tr>\n
-			<tr><th>Téléphone</th><td><input type='text' name='telephone' value='$client[telephone]' /></td></tr>\n
-			<tr><th>Téléphone 2</th><td><input type='text' name='telephone2' value='$client[telephone2]' /></td></tr>\n
+			<tr><th>Nom</th><td><input type='text' name='nom' value='$client[nom]' autocomplete='off' /></td></tr>\n
+			<tr><th>Prénom</th><td><input type='text' name='prenom' value='$client[prenom]' autocomplete='off' /></td></tr>\n
+			<tr><th>Adresse</th><td><input type='text' name='adresse' value='$client[adresse]' autocomplete='off' /></td></tr>\n
+			<tr><th>Ville</th><td><input type='text' name='ville' value='$client[ville]' autocomplete='off' /></td></tr>\n
+			<tr><th>Code postal</th><td><input type='text' name='codePostal' value='$client[codePostal]' autocomplete='off' /></td></tr>\n
+			<tr><th>Téléphone</th><td><input type='text' name='telephone' value='$client[telephone]' autocomplete='off' /></td></tr>\n
+			<tr><th>Téléphone 2</th><td><input type='text' name='telephone2' value='$client[telephone2]' autocomplete='off' /></td></tr>\n
 			<tr><th>Mail</th><td><input type='text' name='mail' value='$client[mail]'/></td></tr>\n
 			<tr><th>Abonnement mail</th><td><input type='radio' id='mail0' name='aboMail' value='0' ";
 			if(!$client['aboMail']) // Coche la case si non-abonné aux mails
@@ -245,8 +245,8 @@ function modifier()
 			if($client['aboSms'])
 				echo "checked";
 			echo "/><label for='sms1'>Oui</label></td></tr>\n
-			<tr><th>Date de naissance</th><td><input type='date' name='dateDeNaissance' value='$client[dateDeNaissance]'/></td></tr>\n
-			<tr><th>Intérêts</th><td><input type='text' name='interets' value='$client[interets]'/></td></tr>\n
+			<tr><th>Date de naissance</th><td><input type='date' name='dateDeNaissance' value='$client[dateDeNaissance]' autocomplete='off'/></td></tr>\n
+			<tr><th>Intérêts</th><td><input type='text' name='interets' value='$client[interets]' autocomplete='off'/></td></tr>\n
 		</table>\n
 		<input type='submit' value='Valider' />\n
 		</form>\n";

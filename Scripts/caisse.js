@@ -23,29 +23,36 @@ function getClient()
 					{
 						var kek = xmlhttp.responseText;
 						data = eval("("+kek+")");
-						if(data["client"]["id"]!=undefined)
-                            document.getElementById("idUser").value = data["client"]["id"];
-						if(data["client"]["nom"]!=undefined) // si le nom est definie, on remplie les donnees dans l'HTML
-                            document.getElementById("nom").innerHTML = data["client"]["nom"]; // remplissage
-						if(data["client"]["prenom"]!=undefined)
-                            document.getElementById("prenom").innerHTML = data["client"]["prenom"];
-						if(data["client"]["ville"]!=undefined)
-                            document.getElementById("ville").innerHTML = data["client"]["ville"];
-						if(data["client"]["codePostal"]!=undefined)
-                            document.getElementById("codePostal").innerHTML = data["client"]["codePostal"];
-						if(data["client"]["telephone"]!=undefined)
-                            document.getElementById("numeroTel").innerHTML = data["client"]["telephone"];
-						if(data["client"]["telephone2"]!=undefined)
-                            document.getElementById("numeroTel2").innerHTML = data["client"]["telephone2"];
-						if(data["client"]["mail"]!=undefined)
-                            document.getElementById("adresseMail").innerHTML = data["client"]["mail"];
-						if(data["client"]["cagnotte"]!=undefined)
+                        if(data["client"] != 1) // Si client non trouvé,
                         {
-                            document.getElementById("cagnotte").innerHTML = data["client"]["cagnotte"];
-                            document.getElementById("cagnotteF").value = data["client"]["cagnotte"];
-                            cagnotteInit=data["client"]["cagnotte"];
-						}
-						ajoutReducHtml(data);
+                            if(data["client"]["id"]!=undefined)
+                                document.getElementById("idUser").value = data["client"]["id"];
+                            if(data["client"]["nom"]!=undefined) // si le nom est definie, on remplie les donnees dans l'HTML
+                                document.getElementById("nom").innerHTML = data["client"]["nom"]; // remplissage
+                            if(data["client"]["prenom"]!=undefined)
+                                document.getElementById("prenom").innerHTML = data["client"]["prenom"];
+                            if(data["client"]["ville"]!=undefined)
+                                document.getElementById("ville").innerHTML = data["client"]["ville"];
+                            if(data["client"]["codePostal"]!=undefined)
+                                document.getElementById("codePostal").innerHTML = data["client"]["codePostal"];
+                            if(data["client"]["telephone"]!=undefined)
+                                document.getElementById("numeroTel").innerHTML = data["client"]["telephone"];
+                            if(data["client"]["telephone2"]!=undefined)
+                                document.getElementById("numeroTel2").innerHTML = data["client"]["telephone2"];
+                            if(data["client"]["mail"]!=undefined)
+                                document.getElementById("adresseMail").innerHTML = data["client"]["mail"];
+                            if(data["client"]["cagnotte"]!=undefined)
+                            {
+                                document.getElementById("cagnotte").innerHTML = data["client"]["cagnotte"];
+                                document.getElementById("cagnotteF").value = data["client"]["cagnotte"];
+                                cagnotteInit=data["client"]["cagnotte"];
+                            }
+                            ajoutReducHtml(data);
+                        }
+                        else
+                        {
+                            alert("La carte n'est affectée à aucun client.");
+                        }
 					}
 				}
 				
@@ -68,14 +75,16 @@ function initPage ()
     document.getElementById("postReducSpan").innerHTML="";
 	document.getElementById("reducs").innerHTML="";
 	document.getElementById("cagnotteF").value="";
+    document.getElementById("postReducDiv").style.display = "none";
 }
 
 function ajoutReducHtml (toto)
 {
     
-    document.getElementById("postReducSpan").style.display="block"; // on affiche un span pour le montant post reduc
+    document.getElementById("postReducSpan").style.display="inline"; // on affiche un span pour le montant post reduc
     document.getElementById("preReduc").placeholder="Montant pré-réduction"; // on change le text de 'montant' a 'montant pré-reduction'
     document.getElementById("appliqueReduc").style.display="block"; //affiche le div contenant le bouton de validation de la reduction
+    document.getElementById("postReducDiv").style.display = "block";
 	if(toto["reducs"]!=undefined && toto["reducs"].length>0) // si il y a au moins une reduc pour le client selected
 	{
 		for(var i=0;i<toto["reducs"].length;i++)
@@ -196,7 +205,6 @@ function checkSubmit()
 	oBut = document.getElementById('appliqueReduc');
 	oVal = document.getElementById('preReduc');
 	var pattern = new RegExp("^[0-9]*\.[0-9]{0,2}$");
-	console.log(oVal.value);
 	if(pattern.test(oVal.value))
 	{
 		oBut.disabled = false;

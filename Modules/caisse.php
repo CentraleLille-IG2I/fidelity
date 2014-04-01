@@ -76,13 +76,13 @@ function caisse()
 
 	<div id="prix">
 		<input type="text" id="preReduc" name="valeurInitiale" placeholder="Montant" onkeyup="transfertMontant();checkSubmit();"  autocomplete="off"/><br />
-        <span id="postReducSpan"></span><br />
+<div id="postReducDiv" style="display:none;">À payer : <span id="postReducSpan"></span>&nbsp;€</div><br />
 		<input type="hidden" id="postReduc" name="valeurFinale" /><br />
 	</div>
 	
 	<div id="reducs"></div>
 	
-	<input type="submit" id="appliqueReduc" value="Valider la vente" />
+	<input type="submit" id="appliqueReduc" value="Valider la vente" disabled/>
 </form>
 
 	<script type='text/javascript' src='Scripts/jquery.js'></script>
