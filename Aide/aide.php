@@ -10,3 +10,5 @@
 ?>
 
 <h1>Aide</h1>
+
+<a class="but" href="Aide/Manueldutilisation.pdf">Ouvrir le manuel</a>

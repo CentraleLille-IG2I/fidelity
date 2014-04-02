@@ -6,14 +6,13 @@
 	 * Created by Richard Degenne on 30/12/2013. CC by-nc-sa.
 	 * 
 	 * Cette page regroupe tous les noms de fichiers utilisés dans le projet pour simplifier les mises à jour.
-	 + Du coup je m'invite!!!   :D
 	 */
 	
 	/*
-	+ Le nom de l'addresse mail emetrice
+	+ L'adresse mail émettrice
 	*/
 	
-	$string["NameSenderMail"] = "Sauron@mordor.tm";
+	$string["NameSenderMail"] = "baslyprimeurs@orange.fr";
 	
 	/*
 	 * Frame
